@@ -35,9 +35,140 @@ function dismissInstallBanner() {
 installCloseBtn.addEventListener('click', dismissInstallBanner);
 installActionBtn.addEventListener('click', dismissInstallBanner);
 
+// ============ LOGIN / REGISTER (DEMO ONLY — NO REAL BACKEND) ============
+const authOverlay = document.getElementById('authOverlay');
+const authCloseBtn = document.getElementById('authCloseBtn');
+const authTabLogin = document.getElementById('authTabLogin');
+const authTabRegister = document.getElementById('authTabRegister');
+const loginForm = document.getElementById('loginForm');
+const registerForm = document.getElementById('registerForm');
+const authError = document.getElementById('authError');
+const headerActions = document.getElementById('headerActions');
+const drawerActions = document.getElementById('drawerActions');
+const AUTH_STORAGE_KEY = 'ogxbetDemoUser';
+
+function openAuthModal(tab) {
+  authOverlay.classList.add('open');
+  showAuthTab(tab || 'login');
+  hideAuthError();
+}
+function closeAuthModal() {
+  authOverlay.classList.remove('open');
+}
+function showAuthTab(tab) {
+  const isLogin = tab === 'login';
+  authTabLogin.classList.toggle('active', isLogin);
+  authTabRegister.classList.toggle('active', !isLogin);
+  loginForm.classList.toggle('hidden', !isLogin);
+  registerForm.classList.toggle('hidden', isLogin);
+  hideAuthError();
+}
+function showAuthError(message) {
+  authError.textContent = message;
+  authError.classList.add('show');
+}
+function hideAuthError() {
+  authError.classList.remove('show');
+}
+
+document.querySelectorAll('.auth-open-btn').forEach(btn => {
+  btn.addEventListener('click', () => openAuthModal(btn.dataset.authTab));
+});
+authCloseBtn.addEventListener('click', closeAuthModal);
+authOverlay.addEventListener('click', (e) => { if (e.target === authOverlay) closeAuthModal(); });
+authTabLogin.addEventListener('click', () => showAuthTab('login'));
+authTabRegister.addEventListener('click', () => showAuthTab('register'));
+document.querySelectorAll('[data-switch-to]').forEach(el => {
+  el.addEventListener('click', (e) => { e.preventDefault(); showAuthTab(el.dataset.switchTo); });
+});
+
+function renderLoggedInState(name) {
+  const chipHtml = `
+    <div class="user-chip">
+      <span class="user-avatar">${name.charAt(0).toUpperCase()}</span>
+      <span>${name}</span>
+      <button class="user-logout" data-i18n="authLogout">Log Out</button>
+    </div>`;
+  headerActions.innerHTML = chipHtml;
+  drawerActions.innerHTML = chipHtml;
+  document.querySelectorAll('.user-logout').forEach(btn => {
+    btn.dataset.i18n = 'authLogout';
+    btn.textContent = (TRANSLATIONS[currentLang] || TRANSLATIONS.en).authLogout;
+    btn.addEventListener('click', logoutDemoUser);
+  });
+}
+
+function renderLoggedOutState() {
+  const actionsHtml = (extraClass) => `
+    <button class="btn btn-ghost${extraClass} auth-open-btn" data-auth-tab="login" data-i18n="logIn">Log In</button>
+    <button class="btn btn-primary${extraClass} auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Join Now</button>`;
+  headerActions.innerHTML = actionsHtml('');
+  drawerActions.innerHTML = actionsHtml(' btn-block');
+  document.querySelectorAll('.auth-open-btn').forEach(btn => {
+    btn.addEventListener('click', () => openAuthModal(btn.dataset.authTab));
+  });
+  applyTranslations(currentLang);
+}
+
+function loginDemoUser(name) {
+  localStorage.setItem(AUTH_STORAGE_KEY, name);
+  renderLoggedInState(name);
+}
+function logoutDemoUser() {
+  localStorage.removeItem(AUTH_STORAGE_KEY);
+  renderLoggedOutState();
+}
+
+loginForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const [emailInput, passwordInput] = loginForm.querySelectorAll('input');
+  if (!emailInput.value.trim() || !passwordInput.value) {
+    showAuthError('Please fill in both fields.');
+    return;
+  }
+  hideAuthError();
+  const submitBtn = loginForm.querySelector('.auth-submit');
+  submitBtn.disabled = true;
+  setTimeout(() => {
+    submitBtn.disabled = false;
+    closeAuthModal();
+    loginForm.reset();
+    loginDemoUser(emailInput.value.trim().split('@')[0]);
+  }, 500);
+});
+
+registerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const [usernameInput, emailInput, passwordInput, confirmInput] = registerForm.querySelectorAll('input:not([type="checkbox"])');
+  if (!usernameInput.value.trim() || !emailInput.value.trim() || !passwordInput.value || !confirmInput.value) {
+    showAuthError('Please fill in all fields.');
+    return;
+  }
+  if (passwordInput.value !== confirmInput.value) {
+    showAuthError('Passwords do not match.');
+    return;
+  }
+  hideAuthError();
+  const submitBtn = registerForm.querySelector('.auth-submit');
+  submitBtn.disabled = true;
+  setTimeout(() => {
+    submitBtn.disabled = false;
+    closeAuthModal();
+    const name = usernameInput.value.trim();
+    registerForm.reset();
+    loginDemoUser(name);
+  }, 500);
+});
+
 // ============ TRANSLATIONS ============
 const TRANSLATIONS = {
   en: {
+    authTabLogin: 'Log In', authTabRegister: 'Register',
+    authEmailLabel: 'Email or Username', authPasswordLabel: 'Password', authForgot: 'Forgot password?',
+    authLoginSubmit: 'Log In', authNoAccount: "Don't have an account?",
+    authUsernameLabel: 'Username', authEmailFieldLabel: 'Email', authConfirmPasswordLabel: 'Confirm Password',
+    authAgreeTerms: 'I agree to the Terms of Service', authRegisterSubmit: 'Create Account', authHaveAccount: 'Already have an account?',
+    authDemoNote: 'This is a UI demo — no real account is created and no data is sent anywhere.', authLogout: 'Log Out',
     installTitle: 'Install App', installSubtitle: 'Get quick access and exclusive bonuses', installAction: 'Install',
     support: 'Support', downloadApp: 'Download App', vipClub: 'VIP Club',
     navCasino: 'Casino', navLiveCasino: 'Live Casino', navSports: 'Sports', navSlots: 'Slots', navPromotions: 'Promotions', navVip: 'VIP',
@@ -65,6 +196,12 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. All rights reserved.'
   },
   vi: {
+    authTabLogin: 'Đăng Nhập', authTabRegister: 'Đăng Ký',
+    authEmailLabel: 'Email hoặc Tên đăng nhập', authPasswordLabel: 'Mật khẩu', authForgot: 'Quên mật khẩu?',
+    authLoginSubmit: 'Đăng Nhập', authNoAccount: 'Chưa có tài khoản?',
+    authUsernameLabel: 'Tên đăng nhập', authEmailFieldLabel: 'Email', authConfirmPasswordLabel: 'Xác Nhận Mật Khẩu',
+    authAgreeTerms: 'Tôi đồng ý với Điều Khoản Dịch Vụ', authRegisterSubmit: 'Tạo Tài Khoản', authHaveAccount: 'Đã có tài khoản?',
+    authDemoNote: 'Đây là bản demo giao diện — không có tài khoản thật nào được tạo và không có dữ liệu nào được gửi đi.', authLogout: 'Đăng Xuất',
     installTitle: 'Cài Đặt Ứng Dụng', installSubtitle: 'Truy cập nhanh và ưu đãi độc quyền', installAction: 'Cài Đặt',
     support: 'Hỗ trợ', downloadApp: 'Tải ứng dụng', vipClub: 'Câu lạc bộ VIP',
     navCasino: 'Casino', navLiveCasino: 'Casino Trực Tiếp', navSports: 'Thể Thao', navSlots: 'Slots', navPromotions: 'Khuyến Mãi', navVip: 'VIP',
@@ -92,6 +229,12 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Đã đăng ký bản quyền.'
   },
   zh: {
+    authTabLogin: '登录', authTabRegister: '注册',
+    authEmailLabel: '邮箱或用户名', authPasswordLabel: '密码', authForgot: '忘记密码？',
+    authLoginSubmit: '登录', authNoAccount: '还没有账户？',
+    authUsernameLabel: '用户名', authEmailFieldLabel: '邮箱', authConfirmPasswordLabel: '确认密码',
+    authAgreeTerms: '我同意服务条款', authRegisterSubmit: '创建账户', authHaveAccount: '已有账户？',
+    authDemoNote: '这是界面演示 — 不会创建真实账户，也不会发送任何数据。', authLogout: '退出登录',
     installTitle: '安装应用', installSubtitle: '快速访问并享受专属优惠', installAction: '安装',
     support: '客服支持', downloadApp: '下载应用', vipClub: 'VIP俱乐部',
     navCasino: '娱乐场', navLiveCasino: '真人娱乐场', navSports: '体育', navSlots: '老虎机', navPromotions: '优惠活动', navVip: 'VIP',
@@ -119,6 +262,12 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. 保留所有权利。'
   },
   ms: {
+    authTabLogin: 'Log Masuk', authTabRegister: 'Daftar',
+    authEmailLabel: 'E-mel atau Nama Pengguna', authPasswordLabel: 'Kata Laluan', authForgot: 'Lupa kata laluan?',
+    authLoginSubmit: 'Log Masuk', authNoAccount: 'Belum ada akaun?',
+    authUsernameLabel: 'Nama Pengguna', authEmailFieldLabel: 'E-mel', authConfirmPasswordLabel: 'Sahkan Kata Laluan',
+    authAgreeTerms: 'Saya bersetuju dengan Terma Perkhidmatan', authRegisterSubmit: 'Cipta Akaun', authHaveAccount: 'Sudah ada akaun?',
+    authDemoNote: 'Ini ialah demo antara muka — tiada akaun sebenar dicipta dan tiada data dihantar ke mana-mana.', authLogout: 'Log Keluar',
     installTitle: 'Pasang Aplikasi', installSubtitle: 'Akses pantas dan bonus eksklusif', installAction: 'Pasang',
     support: 'Sokongan', downloadApp: 'Muat Turun Aplikasi', vipClub: 'Kelab VIP',
     navCasino: 'Kasino', navLiveCasino: 'Kasino Langsung', navSports: 'Sukan', navSlots: 'Slot', navPromotions: 'Promosi', navVip: 'VIP',
@@ -146,6 +295,12 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Hak cipta terpelihara.'
   },
   th: {
+    authTabLogin: 'เข้าสู่ระบบ', authTabRegister: 'สมัครสมาชิก',
+    authEmailLabel: 'อีเมลหรือชื่อผู้ใช้', authPasswordLabel: 'รหัสผ่าน', authForgot: 'ลืมรหัสผ่าน?',
+    authLoginSubmit: 'เข้าสู่ระบบ', authNoAccount: 'ยังไม่มีบัญชี?',
+    authUsernameLabel: 'ชื่อผู้ใช้', authEmailFieldLabel: 'อีเมล', authConfirmPasswordLabel: 'ยืนยันรหัสผ่าน',
+    authAgreeTerms: 'ฉันยอมรับข้อกำหนดการให้บริการ', authRegisterSubmit: 'สร้างบัญชี', authHaveAccount: 'มีบัญชีอยู่แล้ว?',
+    authDemoNote: 'นี่คือหน้าตาตัวอย่างเท่านั้น — ไม่มีการสร้างบัญชีจริงและไม่มีการส่งข้อมูลใด ๆ', authLogout: 'ออกจากระบบ',
     installTitle: 'ติดตั้งแอป', installSubtitle: 'เข้าถึงได้รวดเร็วพร้อมโบนัสสุดพิเศษ', installAction: 'ติดตั้ง',
     support: 'ฝ่ายสนับสนุน', downloadApp: 'ดาวน์โหลดแอป', vipClub: 'คลับ VIP',
     navCasino: 'คาสิโน', navLiveCasino: 'คาสิโนสด', navSports: 'กีฬา', navSlots: 'สล็อต', navPromotions: 'โปรโมชั่น', navVip: 'VIP',
@@ -190,6 +345,9 @@ function applyTranslations(lang) {
   document.documentElement.lang = lang;
   renderGames();
 }
+
+const existingDemoUser = localStorage.getItem(AUTH_STORAGE_KEY);
+if (existingDemoUser) renderLoggedInState(existingDemoUser);
 
 // ============ LANGUAGE SELECTOR ============
 const langSelect = document.getElementById('langSelect');

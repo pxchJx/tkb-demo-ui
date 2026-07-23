@@ -151,6 +151,169 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 
+/* ============ AUTH MODAL (LOGIN / REGISTER) ============ */
+.auth-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(3,5,12,0.72);
+  backdrop-filter: blur(3px);
+  z-index: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s;
+  padding: 20px;
+}
+.auth-overlay.open { opacity: 1; visibility: visible; }
+
+.auth-modal {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+  padding: 28px 26px 24px;
+  transform: translateY(12px) scale(0.98);
+  transition: transform 0.2s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+.auth-overlay.open .auth-modal { transform: translateY(0) scale(1); }
+
+.auth-close {
+  position: absolute;
+  top: 14px; right: 14px;
+  background: transparent;
+  color: var(--text-2);
+  font-size: 1rem;
+  padding: 6px;
+}
+.auth-close:hover { color: var(--text-0); }
+
+.auth-tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--bg-2);
+  border-radius: 999px;
+  padding: 4px;
+  margin-bottom: 22px;
+}
+.auth-tab {
+  flex: 1;
+  background: transparent;
+  color: var(--text-1);
+  font-weight: 700;
+  font-size: 0.88rem;
+  padding: 9px 0;
+  border-radius: 999px;
+}
+.auth-tab.active { background: var(--accent); color: #ffffff; }
+
+.auth-form { display: flex; flex-direction: column; gap: 14px; }
+.auth-form.hidden { display: none; }
+
+.auth-field { display: flex; flex-direction: column; gap: 6px; }
+.auth-field label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-1);
+}
+.auth-field input {
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 11px 12px;
+  color: var(--text-0);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+.auth-field input:focus { border-color: var(--accent); }
+.auth-field input:invalid:not(:placeholder-shown) { border-color: var(--accent-2); }
+
+.auth-forgot {
+  align-self: flex-end;
+  font-size: 0.78rem;
+  color: var(--accent-soft);
+  margin-top: -6px;
+}
+.auth-forgot:hover { text-decoration: underline; }
+
+.auth-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 0.8rem;
+  color: var(--text-1);
+  cursor: pointer;
+}
+.auth-checkbox input { margin-top: 3px; accent-color: var(--accent); }
+
+.auth-submit { margin-top: 4px; }
+.auth-submit:disabled { opacity: 0.7; cursor: default; }
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+.auth-switch a { color: var(--accent-soft); font-weight: 600; }
+.auth-switch a:hover { text-decoration: underline; }
+
+.auth-note {
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--text-2);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+  margin-top: 2px;
+}
+
+.auth-error {
+  display: none;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--accent-2);
+  margin-top: 12px;
+}
+.auth-error.show { display: block; }
+
+/* Logged-in user chip (replaces Log In / Join Now once demo auth succeeds) */
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px 6px 6px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.user-chip .user-avatar {
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+.user-chip .user-logout {
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 2px 4px;
+}
+.user-chip .user-logout:hover { color: var(--accent-2); }
+
 /* ============ UTILITY BAR ============ */
 .utility-bar {
   background: var(--bg-0);

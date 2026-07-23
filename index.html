@@ -20,6 +20,61 @@
   <button class="install-btn" id="installActionBtn" data-i18n="installAction">Install</button>
 </div>
 
+<!-- ===== LOGIN / REGISTER MODAL ===== -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-modal">
+    <button class="auth-close" id="authCloseBtn" aria-label="Close">✕</button>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="authTabLogin" data-auth-tab="login" data-i18n="authTabLogin">Log In</button>
+      <button class="auth-tab" id="authTabRegister" data-auth-tab="register" data-i18n="authTabRegister">Register</button>
+    </div>
+
+    <form class="auth-form" id="loginForm" novalidate>
+      <div class="auth-field">
+        <label data-i18n="authEmailLabel">Email or Username</label>
+        <input type="text" required autocomplete="username" placeholder="you@example.com">
+      </div>
+      <div class="auth-field">
+        <label data-i18n="authPasswordLabel">Password</label>
+        <input type="password" required autocomplete="current-password" placeholder="••••••••">
+      </div>
+      <a href="#" class="auth-forgot" data-i18n="authForgot">Forgot password?</a>
+      <button type="submit" class="btn btn-primary btn-block auth-submit" data-i18n="authLoginSubmit">Log In</button>
+      <p class="auth-switch" data-i18n="authNoAccount">Don't have an account? <a href="#" data-switch-to="register" data-i18n="authTabRegister">Register</a></p>
+      <p class="auth-note" data-i18n="authDemoNote">This is a UI demo — no real account is created and no data is sent anywhere.</p>
+    </form>
+
+    <form class="auth-form hidden" id="registerForm" novalidate>
+      <div class="auth-field">
+        <label data-i18n="authUsernameLabel">Username</label>
+        <input type="text" required autocomplete="username" placeholder="Choose a username">
+      </div>
+      <div class="auth-field">
+        <label data-i18n="authEmailFieldLabel">Email</label>
+        <input type="email" required autocomplete="email" placeholder="you@example.com">
+      </div>
+      <div class="auth-field">
+        <label data-i18n="authPasswordLabel">Password</label>
+        <input type="password" required autocomplete="new-password" placeholder="••••••••">
+      </div>
+      <div class="auth-field">
+        <label data-i18n="authConfirmPasswordLabel">Confirm Password</label>
+        <input type="password" required autocomplete="new-password" placeholder="••••••••">
+      </div>
+      <label class="auth-checkbox">
+        <input type="checkbox" required>
+        <span data-i18n="authAgreeTerms">I agree to the Terms of Service</span>
+      </label>
+      <button type="submit" class="btn btn-primary btn-block auth-submit" data-i18n="authRegisterSubmit">Create Account</button>
+      <p class="auth-switch" data-i18n="authHaveAccount">Already have an account? <a href="#" data-switch-to="login" data-i18n="authTabLogin">Log In</a></p>
+      <p class="auth-note" data-i18n="authDemoNote">This is a UI demo — no real account is created and no data is sent anywhere.</p>
+    </form>
+
+    <p class="auth-error" id="authError"></p>
+  </div>
+</div>
+
 <!-- ===== TOP UTILITY BAR ===== -->
 <div class="utility-bar">
   <div class="container utility-inner">
@@ -73,9 +128,9 @@
       <button aria-label="Search">🔍</button>
     </div>
 
-    <div class="header-actions">
-      <button class="btn btn-ghost" data-i18n="logIn">Log In</button>
-      <button class="btn btn-primary" data-i18n="joinNow">Join Now</button>
+    <div class="header-actions" id="headerActions">
+      <button class="btn btn-ghost auth-open-btn" data-auth-tab="login" data-i18n="logIn">Log In</button>
+      <button class="btn btn-primary auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Join Now</button>
     </div>
   </div>
 </header>
@@ -96,9 +151,9 @@
     <a href="#" data-i18n="drawerVipClub">👑 VIP Club</a>
     <a href="#" data-i18n="drawerSupport">💬 Support</a>
   </nav>
-  <div class="drawer-actions">
-    <button class="btn btn-ghost btn-block" data-i18n="logIn">Log In</button>
-    <button class="btn btn-primary btn-block" data-i18n="joinNow">Join Now</button>
+  <div class="drawer-actions" id="drawerActions">
+    <button class="btn btn-ghost btn-block auth-open-btn" data-auth-tab="login" data-i18n="logIn">Log In</button>
+    <button class="btn btn-primary btn-block auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Join Now</button>
   </div>
 </div>
 <div class="drawer-overlay" id="drawerOverlay"></div>
