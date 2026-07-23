@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LuckyReels — Demo Casino UI</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== TOP UTILITY BAR ===== -->
+<div class="utility-bar">
+  <div class="container utility-inner">
+    <div class="utility-links">
+      <a href="#">Support</a>
+      <a href="#">Download App</a>
+      <a href="#">VIP Club</a>
+    </div>
+    <div class="utility-lang">
+      <span>🌐 EN</span>
+      <span>💰 USD</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <a href="#" class="logo">
+      <span class="logo-mark">🎰</span>
+      <span class="logo-text">Lucky<em>Reels</em></span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#" class="active">Casino</a>
+      <a href="#">Live Casino</a>
+      <a href="#">Sports</a>
+      <a href="#">Slots</a>
+      <a href="#">Promotions</a>
+      <a href="#">VIP</a>
+    </nav>
+
+    <div class="header-search">
+      <input type="text" placeholder="Search games...">
+      <button aria-label="Search">🔍</button>
+    </div>
+
+    <div class="header-actions">
+      <button class="btn btn-ghost">Log In</button>
+      <button class="btn btn-primary">Join Now</button>
+    </div>
+  </div>
+</header>
+
+<!-- ===== MOBILE DRAWER ===== -->
+<div class="mobile-drawer" id="mobileDrawer">
+  <div class="drawer-header">
+    <span class="logo-text">Lucky<em>Reels</em></span>
+    <button id="closeDrawer" aria-label="Close menu">✕</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="#">🏠 Home</a>
+    <a href="#">🎰 Casino</a>
+    <a href="#">🎥 Live Casino</a>
+    <a href="#">⚽ Sports</a>
+    <a href="#">🃏 Poker</a>
+    <a href="#">🎁 Promotions</a>
+    <a href="#">👑 VIP Club</a>
+    <a href="#">💬 Support</a>
+  </nav>
+  <div class="drawer-actions">
+    <button class="btn btn-ghost btn-block">Log In</button>
+    <button class="btn btn-primary btn-block">Join Now</button>
+  </div>
+</div>
+<div class="drawer-overlay" id="drawerOverlay"></div>
+
+<!-- ===== PROMO TICKER ===== -->
+<div class="ticker">
+  <div class="ticker-track">
+    <span>🔥 Weekend Reload Bonus — up to 50% extra</span>
+    <span>🎉 New Player Pack — Welcome Bundle available</span>
+    <span>🏆 Leaderboard Race — prize pool live now</span>
+    <span>⚡ Instant Withdrawals — 24/7 processing</span>
+    <span>🔥 Weekend Reload Bonus — up to 50% extra</span>
+    <span>🎉 New Player Pack — Welcome Bundle available</span>
+  </div>
+</div>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-slide">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-badge">Limited Time Offer</span>
+        <h1>Welcome Bundle<br><span class="accent">Up To $1,000</span></h1>
+        <p>Plus bonus spins on featured slot titles. New players only — join in under a minute.</p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg">Claim Bonus</button>
+          <button class="btn btn-outline btn-lg">Browse Games</button>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-coin c1">🪙</div>
+        <div class="art-coin c2">💎</div>
+        <div class="art-coin c3">🍒</div>
+        <div class="art-glow"></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <span class="dot active"></span>
+    <span class="dot"></span>
+    <span class="dot"></span>
+  </div>
+</section>
+
+<!-- ===== QUICK STATS STRIP ===== -->
+<section class="stats-strip">
+  <div class="container stats-inner">
+    <div class="stat"><strong>2,400+</strong><span>Games</span></div>
+    <div class="stat"><strong>24/7</strong><span>Live Support</span></div>
+    <div class="stat"><strong>&lt;10min</strong><span>Avg. Payout</span></div>
+    <div class="stat"><strong>100+</strong><span>Providers</span></div>
+  </div>
+</section>
+
+<!-- ===== MAIN LAYOUT: SIDEBAR + CONTENT ===== -->
+<div class="container main-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-block">
+      <h3>Categories</h3>
+      <ul class="sidebar-list">
+        <li class="active"><a href="#">🎰 Slots</a></li>
+        <li><a href="#">🎥 Live Casino</a></li>
+        <li><a href="#">🃏 Table Games</a></li>
+        <li><a href="#">🎯 Jackpots</a></li>
+        <li><a href="#">🐟 Fishing</a></li>
+        <li><a href="#">⚽ Sportsbook</a></li>
+        <li><a href="#">🆕 New Releases</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-block">
+      <h3>Providers</h3>
+      <ul class="sidebar-list pill-list">
+        <li><a href="#">Starforge</a></li>
+        <li><a href="#">NovaPlay</a></li>
+        <li><a href="#">RedTiger Labs</a></li>
+        <li><a href="#">PixelWin</a></li>
+        <li><a href="#">GoldenRock</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-banner">
+      <p>👑 Join the VIP Club</p>
+      <span>Unlock exclusive perks</span>
+      <button class="btn btn-primary btn-block">Learn More</button>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- Promo Cards -->
+    <section class="section">
+      <div class="section-head">
+        <h2>Featured Promotions</h2>
+        <a href="#" class="see-all">See all →</a>
+      </div>
+      <div class="promo-grid">
+        <div class="promo-card promo-a">
+          <span class="promo-tag">New</span>
+          <h3>First Deposit Match</h3>
+          <p>100% up to $500 + 100 bonus spins</p>
+          <button class="btn btn-primary">Claim</button>
+        </div>
+        <div class="promo-card promo-b">
+          <span class="promo-tag">Weekly</span>
+          <h3>Cashback Friday</h3>
+          <p>Up to 15% cashback on net losses</p>
+          <button class="btn btn-primary">Claim</button>
+        </div>
+        <div class="promo-card promo-c">
+          <span class="promo-tag">Hot</span>
+          <h3>Refer a Friend</h3>
+          <p>Earn $25 for every friend you invite</p>
+          <button class="btn btn-primary">Claim</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Category Tabs -->
+    <section class="section">
+      <div class="section-head">
+        <h2>Explore Games</h2>
+        <div class="tabs" id="gameTabs">
+          <button class="tab active" data-filter="all">All</button>
+          <button class="tab" data-filter="slots">Slots</button>
+          <button class="tab" data-filter="live">Live</button>
+          <button class="tab" data-filter="table">Table</button>
+          <button class="tab" data-filter="jackpot">Jackpot</button>
+        </div>
+      </div>
+
+      <!-- Game Grid -->
+      <div class="game-grid" id="gameGrid">
+        <!-- injected by JS -->
+      </div>
+
+      <div class="load-more-wrap">
+        <button class="btn btn-outline" id="loadMoreBtn">Load More Games</button>
+      </div>
+    </section>
+
+    <!-- Jackpot Banner -->
+    <section class="jackpot-banner">
+      <div class="jackpot-text">
+        <span class="jackpot-label">Progressive Jackpot</span>
+        <span class="jackpot-amount" id="jackpotAmount">$1,284,502.17</span>
+      </div>
+      <button class="btn btn-primary btn-lg">Play Now</button>
+    </section>
+
+  </main>
+</div>
+
+<!-- ===== TRUST STRIP ===== -->
+<section class="trust-strip">
+  <div class="container trust-inner">
+    <div class="trust-item">🔒 SSL Secured</div>
+    <div class="trust-item">✅ Licensed & Regulated</div>
+    <div class="trust-item">⚡ Fast Payouts</div>
+    <div class="trust-item">🎧 24/7 Support</div>
+    <div class="trust-item">🔞 18+ Responsible Play</div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-col footer-brand">
+      <span class="logo-text">Lucky<em>Reels</em></span>
+      <p>A demo casino UI built for front-end testing and prototyping purposes only. Not a real gambling service.</p>
+      <div class="payment-icons">
+        <span>💳</span><span>🏦</span><span>₿</span><span>Ⓟ</span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Casino</h4>
+      <a href="#">Slots</a>
+      <a href="#">Live Casino</a>
+      <a href="#">Table Games</a>
+      <a href="#">Jackpots</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#">About Us</a>
+      <a href="#">Promotions</a>
+      <a href="#">VIP Club</a>
+      <a href="#">Affiliates</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">Help Center</a>
+      <a href="#">Responsible Gaming</a>
+      <a href="#">Terms of Service</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>⚠️ Demo / placeholder site — for UI development and testing only. No real-money gambling occurs here.</p>
+    <p>© 2026 LuckyReels Demo. All rights reserved.</p>
+  </div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
