@@ -16,9 +16,29 @@ hamburgerBtn.addEventListener('click', openDrawer);
 closeDrawer.addEventListener('click', closeDrawerFn);
 drawerOverlay.addEventListener('click', closeDrawerFn);
 
+// ============ INSTALL APP / SMART BANNER ============
+const installBanner = document.getElementById('installBanner');
+const installCloseBtn = document.getElementById('installCloseBtn');
+const installActionBtn = document.getElementById('installActionBtn');
+const INSTALL_DISMISS_KEY = 'installBannerDismissed';
+
+if (installBanner && !localStorage.getItem(INSTALL_DISMISS_KEY)) {
+  setTimeout(() => installBanner.classList.add('show'), 1200);
+}
+
+function dismissInstallBanner() {
+  installBanner.classList.remove('show');
+  localStorage.setItem(INSTALL_DISMISS_KEY, '1');
+  setTimeout(() => installBanner.classList.add('hidden'), 300);
+}
+
+installCloseBtn.addEventListener('click', dismissInstallBanner);
+installActionBtn.addEventListener('click', dismissInstallBanner);
+
 // ============ TRANSLATIONS ============
 const TRANSLATIONS = {
   en: {
+    installTitle: 'Install App', installSubtitle: 'Get quick access and exclusive bonuses', installAction: 'Install',
     support: 'Support', downloadApp: 'Download App', vipClub: 'VIP Club',
     navCasino: 'Casino', navLiveCasino: 'Live Casino', navSports: 'Sports', navSlots: 'Slots', navPromotions: 'Promotions', navVip: 'VIP',
     searchPlaceholder: 'Search games...', logIn: 'Log In', joinNow: 'Join Now',
@@ -45,6 +65,7 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 LuckyReels Demo. All rights reserved.'
   },
   vi: {
+    installTitle: 'Cài Đặt Ứng Dụng', installSubtitle: 'Truy cập nhanh và ưu đãi độc quyền', installAction: 'Cài Đặt',
     support: 'Hỗ trợ', downloadApp: 'Tải ứng dụng', vipClub: 'Câu lạc bộ VIP',
     navCasino: 'Casino', navLiveCasino: 'Casino Trực Tiếp', navSports: 'Thể Thao', navSlots: 'Slots', navPromotions: 'Khuyến Mãi', navVip: 'VIP',
     searchPlaceholder: 'Tìm kiếm trò chơi...', logIn: 'Đăng Nhập', joinNow: 'Tham Gia Ngay',
@@ -71,6 +92,7 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 LuckyReels Demo. Đã đăng ký bản quyền.'
   },
   zh: {
+    installTitle: '安装应用', installSubtitle: '快速访问并享受专属优惠', installAction: '安装',
     support: '客服支持', downloadApp: '下载应用', vipClub: 'VIP俱乐部',
     navCasino: '娱乐场', navLiveCasino: '真人娱乐场', navSports: '体育', navSlots: '老虎机', navPromotions: '优惠活动', navVip: 'VIP',
     searchPlaceholder: '搜索游戏...', logIn: '登录', joinNow: '立即加入',
@@ -97,6 +119,7 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 LuckyReels Demo. 保留所有权利。'
   },
   ms: {
+    installTitle: 'Pasang Aplikasi', installSubtitle: 'Akses pantas dan bonus eksklusif', installAction: 'Pasang',
     support: 'Sokongan', downloadApp: 'Muat Turun Aplikasi', vipClub: 'Kelab VIP',
     navCasino: 'Kasino', navLiveCasino: 'Kasino Langsung', navSports: 'Sukan', navSlots: 'Slot', navPromotions: 'Promosi', navVip: 'VIP',
     searchPlaceholder: 'Cari permainan...', logIn: 'Log Masuk', joinNow: 'Sertai Sekarang',
@@ -123,6 +146,7 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 LuckyReels Demo. Hak cipta terpelihara.'
   },
   th: {
+    installTitle: 'ติดตั้งแอป', installSubtitle: 'เข้าถึงได้รวดเร็วพร้อมโบนัสสุดพิเศษ', installAction: 'ติดตั้ง',
     support: 'ฝ่ายสนับสนุน', downloadApp: 'ดาวน์โหลดแอป', vipClub: 'คลับ VIP',
     navCasino: 'คาสิโน', navLiveCasino: 'คาสิโนสด', navSports: 'กีฬา', navSlots: 'สล็อต', navPromotions: 'โปรโมชั่น', navVip: 'VIP',
     searchPlaceholder: 'ค้นหาเกม...', logIn: 'เข้าสู่ระบบ', joinNow: 'สมัครเลย',

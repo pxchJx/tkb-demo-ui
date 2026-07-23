@@ -79,6 +79,76 @@ img { max-width: 100%; display: block; }
 .btn-lg { padding: 14px 28px; font-size: 1rem; }
 .btn-block { width: 100%; }
 
+/* ============ INSTALL APP / SMART BANNER ============ */
+.install-banner {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 300;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -8px 24px rgba(0,0,0,0.35);
+  padding: 10px 14px;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+.install-banner.show { transform: translateY(0); }
+.install-banner.hidden { display: none; }
+
+.install-close {
+  background: transparent;
+  color: var(--text-2);
+  font-size: 0.9rem;
+  padding: 4px 6px;
+  flex-shrink: 0;
+}
+.install-close:hover { color: var(--text-0); }
+
+.install-icon {
+  width: 42px; height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--purple), #4a2fb0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  flex-shrink: 0;
+}
+
+.install-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  flex: 1;
+  min-width: 0;
+}
+.install-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.install-subtitle {
+  font-size: 0.75rem;
+  color: var(--text-2);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.install-btn {
+  background: linear-gradient(135deg, var(--accent), #ff9d1f);
+  color: #1a1305;
+  font-weight: 700;
+  font-size: 0.82rem;
+  padding: 8px 16px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
 /* ============ UTILITY BAR ============ */
 .utility-bar {
   background: var(--bg-0);
