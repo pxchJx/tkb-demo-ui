@@ -62,7 +62,7 @@ const TRANSLATIONS = {
     footerCompanyHeading: 'Company', aboutUs: 'About Us', affiliates: 'Affiliates',
     footerSupportHeading: 'Support', helpCenter: 'Help Center', responsibleGaming: 'Responsible Gaming', termsOfService: 'Terms of Service', privacyPolicy: 'Privacy Policy',
     footerDisclaimer: '⚠️ Demo / placeholder site — for UI development and testing only. No real-money gambling occurs here.',
-    footerCopyright: '© 2026 LuckyReels Demo. All rights reserved.'
+    footerCopyright: '© 2026 OGXBET Demo. All rights reserved.'
   },
   vi: {
     installTitle: 'Cài Đặt Ứng Dụng', installSubtitle: 'Truy cập nhanh và ưu đãi độc quyền', installAction: 'Cài Đặt',
@@ -89,7 +89,7 @@ const TRANSLATIONS = {
     footerCompanyHeading: 'Công Ty', aboutUs: 'Về Chúng Tôi', affiliates: 'Đối Tác',
     footerSupportHeading: 'Hỗ Trợ', helpCenter: 'Trung Tâm Trợ Giúp', responsibleGaming: 'Chơi Có Trách Nhiệm', termsOfService: 'Điều Khoản Dịch Vụ', privacyPolicy: 'Chính Sách Bảo Mật',
     footerDisclaimer: '⚠️ Trang demo / giữ chỗ — chỉ dùng để phát triển và kiểm thử giao diện. Không có cá cược tiền thật tại đây.',
-    footerCopyright: '© 2026 LuckyReels Demo. Đã đăng ký bản quyền.'
+    footerCopyright: '© 2026 OGXBET Demo. Đã đăng ký bản quyền.'
   },
   zh: {
     installTitle: '安装应用', installSubtitle: '快速访问并享受专属优惠', installAction: '安装',
@@ -116,7 +116,7 @@ const TRANSLATIONS = {
     footerCompanyHeading: '公司', aboutUs: '关于我们', affiliates: '联盟合作',
     footerSupportHeading: '客服支持', helpCenter: '帮助中心', responsibleGaming: '理性博彩', termsOfService: '服务条款', privacyPolicy: '隐私政策',
     footerDisclaimer: '⚠️ 演示/占位网站 — 仅用于界面开发与测试，本站不涉及真实金钱博彩。',
-    footerCopyright: '© 2026 LuckyReels Demo. 保留所有权利。'
+    footerCopyright: '© 2026 OGXBET Demo. 保留所有权利。'
   },
   ms: {
     installTitle: 'Pasang Aplikasi', installSubtitle: 'Akses pantas dan bonus eksklusif', installAction: 'Pasang',
@@ -143,7 +143,7 @@ const TRANSLATIONS = {
     footerCompanyHeading: 'Syarikat', aboutUs: 'Tentang Kami', affiliates: 'Ahli Gabungan',
     footerSupportHeading: 'Sokongan', helpCenter: 'Pusat Bantuan', responsibleGaming: 'Permainan Bertanggungjawab', termsOfService: 'Terma Perkhidmatan', privacyPolicy: 'Dasar Privasi',
     footerDisclaimer: '⚠️ Laman demo / tempat letak — untuk pembangunan dan ujian antara muka sahaja. Tiada perjudian wang sebenar berlaku di sini.',
-    footerCopyright: '© 2026 LuckyReels Demo. Hak cipta terpelihara.'
+    footerCopyright: '© 2026 OGXBET Demo. Hak cipta terpelihara.'
   },
   th: {
     installTitle: 'ติดตั้งแอป', installSubtitle: 'เข้าถึงได้รวดเร็วพร้อมโบนัสสุดพิเศษ', installAction: 'ติดตั้ง',
@@ -170,7 +170,7 @@ const TRANSLATIONS = {
     footerCompanyHeading: 'บริษัท', aboutUs: 'เกี่ยวกับเรา', affiliates: 'พันธมิตร',
     footerSupportHeading: 'ฝ่ายสนับสนุน', helpCenter: 'ศูนย์ช่วยเหลือ', responsibleGaming: 'การเล่นอย่างมีความรับผิดชอบ', termsOfService: 'ข้อกำหนดการให้บริการ', privacyPolicy: 'นโยบายความเป็นส่วนตัว',
     footerDisclaimer: '⚠️ เว็บไซต์ตัวอย่าง/ทดสอบ — ใช้สำหรับการพัฒนาและทดสอบหน้าตาเว็บเท่านั้น ไม่มีการพนันด้วยเงินจริงเกิดขึ้นที่นี่',
-    footerCopyright: '© 2026 LuckyReels Demo สงวนลิขสิทธิ์'
+    footerCopyright: '© 2026 OGXBET Demo สงวนลิขสิทธิ์'
   }
 };
 

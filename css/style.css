@@ -2,17 +2,18 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg-0: #0d0b14;
-  --bg-1: #14111f;
-  --bg-2: #1c1829;
-  --bg-card: #201c2e;
-  --border: #2e293f;
-  --text-0: #f5f3fa;
-  --text-1: #b8b2c9;
-  --text-2: #7d7791;
-  --accent: #ffb020;
+  --bg-0: #05070f;
+  --bg-1: #0a0f1e;
+  --bg-2: #101a34;
+  --bg-card: #131f3d;
+  --border: #223258;
+  --text-0: #f4f6ff;
+  --text-1: #a9b3d6;
+  --text-2: #6b7699;
+  --accent: #2f6bff;
+  --accent-soft: #4c7cff;
   --accent-2: #ff5f7e;
-  --purple: #7c5cff;
+  --purple: #2f6bff;
   --green: #22c55e;
   --radius: 14px;
   --shadow: 0 8px 24px rgba(0,0,0,0.35);
@@ -56,11 +57,11 @@ img { max-width: 100%; display: block; }
 .btn:active { transform: translateY(0); }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--accent), #ff9d1f);
-  color: #1a1305;
-  box-shadow: 0 4px 14px rgba(255,176,32,0.35);
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(47,107,255,0.4);
 }
-.btn-primary:hover { box-shadow: 0 6px 18px rgba(255,176,32,0.5); }
+.btn-primary:hover { box-shadow: 0 6px 18px rgba(47,107,255,0.55); }
 
 .btn-ghost {
   background: transparent;
@@ -74,7 +75,7 @@ img { max-width: 100%; display: block; }
   color: var(--accent);
   border: 1px solid var(--accent);
 }
-.btn-outline:hover { background: rgba(255,176,32,0.1); }
+.btn-outline:hover { background: rgba(47,107,255,0.12); }
 
 .btn-lg { padding: 14px 28px; font-size: 1rem; }
 .btn-block { width: 100%; }
@@ -109,13 +110,14 @@ img { max-width: 100%; display: block; }
 .install-icon {
   width: 42px; height: 42px;
   border-radius: 10px;
-  background: linear-gradient(135deg, var(--purple), #4a2fb0);
+  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.4rem;
   flex-shrink: 0;
 }
+.install-icon img { width: 100%; height: 100%; display: block; }
 
 .install-text {
   display: flex;
@@ -140,8 +142,8 @@ img { max-width: 100%; display: block; }
 }
 
 .install-btn {
-  background: linear-gradient(135deg, var(--accent), #ff9d1f);
-  color: #1a1305;
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+  color: #ffffff;
   font-weight: 700;
   font-size: 0.82rem;
   padding: 8px 16px;
@@ -250,6 +252,7 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
 }
 .logo-mark { font-size: 1.6rem; }
+.logo-img { height: 26px; width: auto; display: block; }
 .logo-text {
   font-size: 1.3rem;
   font-weight: 800;
@@ -257,7 +260,7 @@ img { max-width: 100%; display: block; }
 }
 .logo-text em {
   font-style: normal;
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -387,8 +390,8 @@ img { max-width: 100%; display: block; }
 .hero {
   position: relative;
   background:
-    radial-gradient(circle at 20% 20%, rgba(124,92,255,0.25), transparent 45%),
-    radial-gradient(circle at 80% 60%, rgba(255,176,32,0.18), transparent 50%),
+    radial-gradient(circle at 20% 20%, rgba(47,107,255,0.3), transparent 45%),
+    radial-gradient(circle at 80% 60%, rgba(76,124,255,0.2), transparent 50%),
     linear-gradient(180deg, var(--bg-1), var(--bg-0));
   overflow: hidden;
 }
@@ -402,8 +405,8 @@ img { max-width: 100%; display: block; }
 .hero-content { max-width: 560px; }
 .hero-badge {
   display: inline-block;
-  background: rgba(255,176,32,0.15);
-  color: var(--accent);
+  background: rgba(47,107,255,0.18);
+  color: var(--accent-soft);
   font-size: 0.78rem;
   font-weight: 700;
   padding: 6px 14px;
@@ -418,7 +421,7 @@ img { max-width: 100%; display: block; }
   letter-spacing: -1px;
 }
 .hero-content h1 .accent {
-  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background: linear-gradient(135deg, var(--accent), var(--accent-soft));
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -442,7 +445,7 @@ img { max-width: 100%; display: block; }
   inset: 0;
   margin: auto;
   width: 240px; height: 240px;
-  background: radial-gradient(circle, rgba(124,92,255,0.35), transparent 70%);
+  background: radial-gradient(circle, rgba(47,107,255,0.4), transparent 70%);
   filter: blur(10px);
 }
 .art-coin {
@@ -534,7 +537,7 @@ img { max-width: 100%; display: block; }
   color: var(--text-1);
 }
 .sidebar-list a:hover { background: var(--bg-2); color: var(--text-0); }
-.sidebar-list li.active a { background: rgba(255,176,32,0.12); color: var(--accent); font-weight: 700; }
+.sidebar-list li.active a { background: rgba(47,107,255,0.15); color: var(--accent-soft); font-weight: 700; }
 
 .pill-list { flex-direction: row; flex-wrap: wrap; gap: 8px; }
 .pill-list a {
@@ -545,7 +548,7 @@ img { max-width: 100%; display: block; }
 }
 
 .sidebar-banner {
-  background: linear-gradient(160deg, #2a1f4d, #1a1330);
+  background: linear-gradient(160deg, #14204a, #0a1024);
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px 16px;
@@ -600,7 +603,7 @@ img { max-width: 100%; display: block; }
   font-weight: 700;
   letter-spacing: 0.5px;
 }
-.promo-a { background: linear-gradient(135deg, #7c5cff, #4a2fb0); }
+.promo-a { background: linear-gradient(135deg, #2f6bff, #0039d6); }
 .promo-b { background: linear-gradient(135deg, #ff5f7e, #b3234f); }
 .promo-c { background: linear-gradient(135deg, #22c55e, #0f7a3d); }
 
@@ -616,7 +619,7 @@ img { max-width: 100%; display: block; }
   border: 1px solid var(--border);
 }
 .tab:hover { color: var(--text-0); }
-.tab.active { background: var(--accent); color: #1a1305; border-color: var(--accent); }
+.tab.active { background: var(--accent); color: #ffffff; border-color: var(--accent); }
 
 /* GAME GRID */
 .game-grid {
@@ -658,7 +661,7 @@ img { max-width: 100%; display: block; }
 }
 .badge-hot { background: var(--accent-2); color: #fff; }
 .badge-new { background: var(--green); color: #06210f; }
-.badge-jackpot { background: var(--accent); color: #1a1305; }
+.badge-jackpot { background: var(--accent); color: #ffffff; }
 
 .play-overlay {
   position: absolute;
@@ -675,7 +678,7 @@ img { max-width: 100%; display: block; }
   width: 44px; height: 44px;
   border-radius: 50%;
   background: var(--accent);
-  color: #1a1305;
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
