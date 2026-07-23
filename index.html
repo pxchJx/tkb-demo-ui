@@ -17,7 +17,19 @@
       <a href="#">VIP Club</a>
     </div>
     <div class="utility-lang">
-      <span>🌐 EN</span>
+      <div class="lang-select" id="langSelect">
+        <button class="lang-current" id="langCurrentBtn" aria-haspopup="true" aria-expanded="false">
+          <span id="langCurrentFlag">🌐</span>
+          <span id="langCurrentLabel">EN</span>
+          <span class="lang-caret">▾</span>
+        </button>
+        <ul class="lang-menu" id="langMenu">
+          <li><button data-flag="🇬🇧" data-label="EN">🇬🇧 English</button></li>
+          <li><button data-flag="🇻🇳" data-label="VI">🇻🇳 Tiếng Việt</button></li>
+          <li><button data-flag="🇨🇳" data-label="ZH">🇨🇳 中文</button></li>
+          <li><button data-flag="🇲🇾" data-label="MS">🇲🇾 Bahasa Malaysia</button></li>
+        </ul>
+      </div>
       <span>💰 USD</span>
     </div>
   </div>

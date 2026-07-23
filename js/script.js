@@ -16,6 +16,37 @@ hamburgerBtn.addEventListener('click', openDrawer);
 closeDrawer.addEventListener('click', closeDrawerFn);
 drawerOverlay.addEventListener('click', closeDrawerFn);
 
+// ============ LANGUAGE SELECTOR ============
+const langSelect = document.getElementById('langSelect');
+const langCurrentBtn = document.getElementById('langCurrentBtn');
+const langMenu = document.getElementById('langMenu');
+const langCurrentFlag = document.getElementById('langCurrentFlag');
+const langCurrentLabel = document.getElementById('langCurrentLabel');
+
+langCurrentBtn.addEventListener('click', (e) => {
+  e.stopPropagation();
+  const isOpen = langSelect.classList.toggle('open');
+  langCurrentBtn.setAttribute('aria-expanded', isOpen);
+});
+
+langMenu.querySelectorAll('button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    langCurrentFlag.textContent = btn.dataset.flag;
+    langCurrentLabel.textContent = btn.dataset.label;
+    langMenu.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    langSelect.classList.remove('open');
+    langCurrentBtn.setAttribute('aria-expanded', 'false');
+  });
+});
+
+document.addEventListener('click', (e) => {
+  if (!langSelect.contains(e.target)) {
+    langSelect.classList.remove('open');
+    langCurrentBtn.setAttribute('aria-expanded', 'false');
+  }
+});
+
 // ============ HERO DOTS AUTO-ROTATE ============
 const dots = document.querySelectorAll('.hero-dots .dot');
 let dotIndex = 0;
