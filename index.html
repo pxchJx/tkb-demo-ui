@@ -75,6 +75,76 @@
   </div>
 </div>
 
+<!-- ===== ACCOUNT SETTINGS MODAL ===== -->
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-modal">
+    <button class="auth-close" id="settingsCloseBtn" aria-label="Close">✕</button>
+    <h3 class="settings-heading" data-i18n="settingsHeading">Account Settings</h3>
+
+    <div class="auth-tabs settings-tabs">
+      <button class="auth-tab active" data-settings-tab="profile" data-i18n="settingsTabProfile">Profile</button>
+      <button class="auth-tab" data-settings-tab="preferences" data-i18n="settingsTabPreferences">Preferences</button>
+      <button class="auth-tab" data-settings-tab="security" data-i18n="settingsTabSecurity">Security</button>
+    </div>
+
+    <form class="auth-form settings-panel" data-settings-panel="profile" novalidate>
+      <div class="auth-field">
+        <label data-i18n="authUsernameLabel">Username</label>
+        <input type="text" id="settingsUsername" required>
+      </div>
+      <div class="auth-field">
+        <label data-i18n="authEmailFieldLabel">Email</label>
+        <input type="email" id="settingsEmail" required>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block settings-submit" data-i18n="settingsSaveProfile">Save Changes</button>
+    </form>
+
+    <form class="auth-form settings-panel hidden" data-settings-panel="preferences" novalidate>
+      <label class="settings-toggle-row">
+        <span data-i18n="settingsEmailNotif">Email Notifications</span>
+        <span class="switch"><input type="checkbox" id="settingsNotifEmail" checked><span class="switch-track"></span></span>
+      </label>
+      <label class="settings-toggle-row">
+        <span data-i18n="settingsMarketing">Marketing Offers</span>
+        <span class="switch"><input type="checkbox" id="settingsNotifMarketing"><span class="switch-track"></span></span>
+      </label>
+      <div class="auth-field">
+        <label data-i18n="settingsCurrency">Preferred Currency</label>
+        <select id="settingsCurrency">
+          <option value="USD">USD — US Dollar</option>
+          <option value="EUR">EUR — Euro</option>
+          <option value="GBP">GBP — British Pound</option>
+          <option value="VND">VND — Vietnamese Dong</option>
+          <option value="CNY">CNY — Chinese Yuan</option>
+          <option value="MYR">MYR — Malaysian Ringgit</option>
+          <option value="THB">THB — Thai Baht</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block settings-submit" data-i18n="settingsSavePrefs">Save Preferences</button>
+    </form>
+
+    <form class="auth-form settings-panel hidden" data-settings-panel="security" novalidate>
+      <div class="auth-field">
+        <label data-i18n="settingsCurrentPassword">Current Password</label>
+        <input type="password" id="settingsCurrentPassword" required placeholder="••••••••">
+      </div>
+      <div class="auth-field">
+        <label data-i18n="settingsNewPassword">New Password</label>
+        <input type="password" id="settingsNewPassword" required placeholder="••••••••">
+      </div>
+      <div class="auth-field">
+        <label data-i18n="authConfirmPasswordLabel">Confirm Password</label>
+        <input type="password" id="settingsConfirmPassword" required placeholder="••••••••">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block settings-submit" data-i18n="settingsUpdatePassword">Update Password</button>
+    </form>
+
+    <p class="auth-error" id="settingsError"></p>
+    <p class="settings-success" id="settingsSuccess"></p>
+    <p class="auth-note" data-i18n="authDemoNote">This is a UI demo — no real account is created and no data is sent anywhere.</p>
+  </div>
+</div>
+
 <!-- ===== TOP UTILITY BAR ===== -->
 <div class="utility-bar">
   <div class="container utility-inner">
@@ -98,7 +168,7 @@
           <li><button data-lang="th" data-flag="🇹🇭" data-label="TH">🇹🇭 ภาษาไทย</button></li>
         </ul>
       </div>
-      <span>💰 USD</span>
+      <span id="currencyDisplay">💰 USD</span>
     </div>
   </div>
 </div>

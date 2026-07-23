@@ -82,15 +82,37 @@ document.querySelectorAll('[data-switch-to]').forEach(el => {
   el.addEventListener('click', (e) => { e.preventDefault(); showAuthTab(el.dataset.switchTo); });
 });
 
-function renderLoggedInState(name) {
+function renderLoggedInState(profile) {
   const chipHtml = `
     <div class="user-chip">
-      <span class="user-avatar">${name.charAt(0).toUpperCase()}</span>
-      <span>${name}</span>
-      <button class="user-logout" data-i18n="authLogout">Log Out</button>
+      <button class="user-chip-btn">
+        <span class="user-avatar">${profile.username.charAt(0).toUpperCase()}</span>
+        <span>${profile.username}</span>
+        <span class="lang-caret">▾</span>
+      </button>
+      <ul class="user-menu">
+        <li><button class="user-open-settings" data-i18n="settingsMenuItem">⚙️ Account Settings</button></li>
+        <li><button class="user-logout" data-i18n="authLogout">🚪 Log Out</button></li>
+      </ul>
     </div>`;
   headerActions.innerHTML = chipHtml;
   drawerActions.innerHTML = chipHtml;
+  document.querySelectorAll('.user-chip').forEach(chip => {
+    const btn = chip.querySelector('.user-chip-btn');
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      document.querySelectorAll('.user-chip').forEach(c => { if (c !== chip) c.classList.remove('open'); });
+      chip.classList.toggle('open');
+    });
+  });
+  document.querySelectorAll('.user-open-settings').forEach(btn => {
+    btn.dataset.i18n = 'settingsMenuItem';
+    btn.textContent = (TRANSLATIONS[currentLang] || TRANSLATIONS.en).settingsMenuItem;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.user-chip').forEach(c => c.classList.remove('open'));
+      openSettingsModal();
+    });
+  });
   document.querySelectorAll('.user-logout').forEach(btn => {
     btn.dataset.i18n = 'authLogout';
     btn.textContent = (TRANSLATIONS[currentLang] || TRANSLATIONS.en).authLogout;
@@ -110,9 +132,14 @@ function renderLoggedOutState() {
   applyTranslations(currentLang);
 }
 
-function loginDemoUser(name) {
-  localStorage.setItem(AUTH_STORAGE_KEY, name);
-  renderLoggedInState(name);
+function getDemoProfile() {
+  const raw = localStorage.getItem(AUTH_STORAGE_KEY);
+  return raw ? JSON.parse(raw) : null;
+}
+
+function loginDemoUser(profile) {
+  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(profile));
+  renderLoggedInState(profile);
 }
 function logoutDemoUser() {
   localStorage.removeItem(AUTH_STORAGE_KEY);
@@ -132,8 +159,9 @@ loginForm.addEventListener('submit', (e) => {
   setTimeout(() => {
     submitBtn.disabled = false;
     closeAuthModal();
+    const rawEmail = emailInput.value.trim();
     loginForm.reset();
-    loginDemoUser(emailInput.value.trim().split('@')[0]);
+    loginDemoUser({ username: rawEmail.split('@')[0], email: rawEmail.includes('@') ? rawEmail : '' });
   }, 500);
 });
 
@@ -154,15 +182,132 @@ registerForm.addEventListener('submit', (e) => {
   setTimeout(() => {
     submitBtn.disabled = false;
     closeAuthModal();
-    const name = usernameInput.value.trim();
+    const profile = { username: usernameInput.value.trim(), email: emailInput.value.trim() };
     registerForm.reset();
-    loginDemoUser(name);
+    loginDemoUser(profile);
   }, 500);
 });
+
+document.addEventListener('click', (e) => {
+  document.querySelectorAll('.user-chip.open').forEach(chip => {
+    if (!chip.contains(e.target)) chip.classList.remove('open');
+  });
+});
+
+// ============ ACCOUNT SETTINGS (DEMO ONLY) ============
+const settingsOverlay = document.getElementById('settingsOverlay');
+const settingsCloseBtn = document.getElementById('settingsCloseBtn');
+const settingsError = document.getElementById('settingsError');
+const settingsSuccess = document.getElementById('settingsSuccess');
+const settingsTabs = document.querySelectorAll('[data-settings-tab]');
+const settingsPanels = document.querySelectorAll('[data-settings-panel]');
+const settingsUsernameInput = document.getElementById('settingsUsername');
+const settingsEmailInput = document.getElementById('settingsEmail');
+const settingsCurrencySelect = document.getElementById('settingsCurrency');
+const settingsNotifEmail = document.getElementById('settingsNotifEmail');
+const settingsNotifMarketing = document.getElementById('settingsNotifMarketing');
+const currencyDisplay = document.getElementById('currencyDisplay');
+const PREFS_STORAGE_KEY = 'ogxbetDemoPrefs';
+
+function getDemoPrefs() {
+  const raw = localStorage.getItem(PREFS_STORAGE_KEY);
+  return raw ? JSON.parse(raw) : { currency: 'USD', emailNotif: true, marketing: false };
+}
+
+function openSettingsModal() {
+  const profile = getDemoProfile();
+  if (!profile) return;
+  settingsUsernameInput.value = profile.username;
+  settingsEmailInput.value = profile.email || '';
+  const prefs = getDemoPrefs();
+  settingsCurrencySelect.value = prefs.currency;
+  settingsNotifEmail.checked = prefs.emailNotif;
+  settingsNotifMarketing.checked = prefs.marketing;
+  showSettingsTab('profile');
+  settingsOverlay.classList.add('open');
+}
+function closeSettingsModal() {
+  settingsOverlay.classList.remove('open');
+}
+function showSettingsTab(tab) {
+  settingsTabs.forEach(t => t.classList.toggle('active', t.dataset.settingsTab === tab));
+  settingsPanels.forEach(p => p.classList.toggle('hidden', p.dataset.settingsPanel !== tab));
+  hideSettingsMessages();
+}
+function showSettingsError(message) {
+  settingsSuccess.classList.remove('show');
+  settingsError.textContent = message;
+  settingsError.classList.add('show');
+}
+function showSettingsSuccess(message) {
+  settingsError.classList.remove('show');
+  settingsSuccess.textContent = message;
+  settingsSuccess.classList.add('show');
+  setTimeout(() => settingsSuccess.classList.remove('show'), 2500);
+}
+function hideSettingsMessages() {
+  settingsError.classList.remove('show');
+  settingsSuccess.classList.remove('show');
+}
+
+settingsCloseBtn.addEventListener('click', closeSettingsModal);
+settingsOverlay.addEventListener('click', (e) => { if (e.target === settingsOverlay) closeSettingsModal(); });
+settingsTabs.forEach(tab => tab.addEventListener('click', () => showSettingsTab(tab.dataset.settingsTab)));
+
+document.querySelector('[data-settings-panel="profile"]').addEventListener('submit', (e) => {
+  e.preventDefault();
+  if (!settingsUsernameInput.value.trim() || !settingsEmailInput.value.trim()) {
+    showSettingsError('Please fill in both fields.');
+    return;
+  }
+  const profile = { username: settingsUsernameInput.value.trim(), email: settingsEmailInput.value.trim() };
+  localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(profile));
+  renderLoggedInState(profile);
+  showSettingsSuccess('Profile updated.');
+});
+
+document.querySelector('[data-settings-panel="preferences"]').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const prefs = {
+    currency: settingsCurrencySelect.value,
+    emailNotif: settingsNotifEmail.checked,
+    marketing: settingsNotifMarketing.checked
+  };
+  localStorage.setItem(PREFS_STORAGE_KEY, JSON.stringify(prefs));
+  currencyDisplay.textContent = `💰 ${prefs.currency}`;
+  showSettingsSuccess('Preferences saved.');
+});
+
+document.querySelector('[data-settings-panel="security"]').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const current = document.getElementById('settingsCurrentPassword');
+  const next = document.getElementById('settingsNewPassword');
+  const confirm = document.getElementById('settingsConfirmPassword');
+  if (!current.value || !next.value || !confirm.value) {
+    showSettingsError('Please fill in all fields.');
+    return;
+  }
+  if (next.value !== confirm.value) {
+    showSettingsError('New passwords do not match.');
+    return;
+  }
+  e.target.reset();
+  showSettingsSuccess('Password updated.');
+});
+
+(function initDemoPrefs() {
+  const prefs = getDemoPrefs();
+  if (currencyDisplay) currencyDisplay.textContent = `💰 ${prefs.currency}`;
+})();
 
 // ============ TRANSLATIONS ============
 const TRANSLATIONS = {
   en: {
+    settingsMenuItem: '⚙️ Account Settings', settingsHeading: 'Account Settings',
+    settingsTabProfile: 'Profile', settingsTabPreferences: 'Preferences', settingsTabSecurity: 'Security',
+    settingsSaveProfile: 'Save Changes', settingsSavePrefs: 'Save Preferences', settingsUpdatePassword: 'Update Password',
+    settingsEmailNotif: 'Email Notifications', settingsMarketing: 'Marketing Offers', settingsCurrency: 'Preferred Currency',
+    settingsCurrentPassword: 'Current Password', settingsNewPassword: 'New Password',
     authTabLogin: 'Log In', authTabRegister: 'Register',
     authEmailLabel: 'Email or Username', authPasswordLabel: 'Password', authForgot: 'Forgot password?',
     authLoginSubmit: 'Log In', authNoAccount: "Don't have an account?",
@@ -196,6 +341,11 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. All rights reserved.'
   },
   vi: {
+    settingsMenuItem: '⚙️ Cài Đặt Tài Khoản', settingsHeading: 'Cài Đặt Tài Khoản',
+    settingsTabProfile: 'Hồ Sơ', settingsTabPreferences: 'Tùy Chọn', settingsTabSecurity: 'Bảo Mật',
+    settingsSaveProfile: 'Lưu Thay Đổi', settingsSavePrefs: 'Lưu Tùy Chọn', settingsUpdatePassword: 'Cập Nhật Mật Khẩu',
+    settingsEmailNotif: 'Thông Báo Qua Email', settingsMarketing: 'Ưu Đãi Tiếp Thị', settingsCurrency: 'Đơn Vị Tiền Tệ Ưa Thích',
+    settingsCurrentPassword: 'Mật Khẩu Hiện Tại', settingsNewPassword: 'Mật Khẩu Mới',
     authTabLogin: 'Đăng Nhập', authTabRegister: 'Đăng Ký',
     authEmailLabel: 'Email hoặc Tên đăng nhập', authPasswordLabel: 'Mật khẩu', authForgot: 'Quên mật khẩu?',
     authLoginSubmit: 'Đăng Nhập', authNoAccount: 'Chưa có tài khoản?',
@@ -229,6 +379,11 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Đã đăng ký bản quyền.'
   },
   zh: {
+    settingsMenuItem: '⚙️ 账户设置', settingsHeading: '账户设置',
+    settingsTabProfile: '个人资料', settingsTabPreferences: '偏好设置', settingsTabSecurity: '安全',
+    settingsSaveProfile: '保存更改', settingsSavePrefs: '保存偏好', settingsUpdatePassword: '更新密码',
+    settingsEmailNotif: '邮件通知', settingsMarketing: '营销优惠信息', settingsCurrency: '首选货币',
+    settingsCurrentPassword: '当前密码', settingsNewPassword: '新密码',
     authTabLogin: '登录', authTabRegister: '注册',
     authEmailLabel: '邮箱或用户名', authPasswordLabel: '密码', authForgot: '忘记密码？',
     authLoginSubmit: '登录', authNoAccount: '还没有账户？',
@@ -262,6 +417,11 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. 保留所有权利。'
   },
   ms: {
+    settingsMenuItem: '⚙️ Tetapan Akaun', settingsHeading: 'Tetapan Akaun',
+    settingsTabProfile: 'Profil', settingsTabPreferences: 'Keutamaan', settingsTabSecurity: 'Keselamatan',
+    settingsSaveProfile: 'Simpan Perubahan', settingsSavePrefs: 'Simpan Keutamaan', settingsUpdatePassword: 'Kemas Kini Kata Laluan',
+    settingsEmailNotif: 'Pemberitahuan E-mel', settingsMarketing: 'Tawaran Pemasaran', settingsCurrency: 'Mata Wang Pilihan',
+    settingsCurrentPassword: 'Kata Laluan Semasa', settingsNewPassword: 'Kata Laluan Baharu',
     authTabLogin: 'Log Masuk', authTabRegister: 'Daftar',
     authEmailLabel: 'E-mel atau Nama Pengguna', authPasswordLabel: 'Kata Laluan', authForgot: 'Lupa kata laluan?',
     authLoginSubmit: 'Log Masuk', authNoAccount: 'Belum ada akaun?',
@@ -295,6 +455,11 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Hak cipta terpelihara.'
   },
   th: {
+    settingsMenuItem: '⚙️ ตั้งค่าบัญชี', settingsHeading: 'ตั้งค่าบัญชี',
+    settingsTabProfile: 'โปรไฟล์', settingsTabPreferences: 'การตั้งค่า', settingsTabSecurity: 'ความปลอดภัย',
+    settingsSaveProfile: 'บันทึกการเปลี่ยนแปลง', settingsSavePrefs: 'บันทึกการตั้งค่า', settingsUpdatePassword: 'อัปเดตรหัสผ่าน',
+    settingsEmailNotif: 'การแจ้งเตือนทางอีเมล', settingsMarketing: 'ข้อเสนอทางการตลาด', settingsCurrency: 'สกุลเงินที่ต้องการ',
+    settingsCurrentPassword: 'รหัสผ่านปัจจุบัน', settingsNewPassword: 'รหัสผ่านใหม่',
     authTabLogin: 'เข้าสู่ระบบ', authTabRegister: 'สมัครสมาชิก',
     authEmailLabel: 'อีเมลหรือชื่อผู้ใช้', authPasswordLabel: 'รหัสผ่าน', authForgot: 'ลืมรหัสผ่าน?',
     authLoginSubmit: 'เข้าสู่ระบบ', authNoAccount: 'ยังไม่มีบัญชี?',
@@ -346,8 +511,8 @@ function applyTranslations(lang) {
   renderGames();
 }
 
-const existingDemoUser = localStorage.getItem(AUTH_STORAGE_KEY);
-if (existingDemoUser) renderLoggedInState(existingDemoUser);
+const existingDemoProfile = getDemoProfile();
+if (existingDemoProfile) renderLoggedInState(existingDemoProfile);
 
 // ============ LANGUAGE SELECTOR ============
 const langSelect = document.getElementById('langSelect');
