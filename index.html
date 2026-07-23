@@ -12,9 +12,9 @@
 <div class="utility-bar">
   <div class="container utility-inner">
     <div class="utility-links">
-      <a href="#">Support</a>
-      <a href="#">Download App</a>
-      <a href="#">VIP Club</a>
+      <a href="#" data-i18n="support">Support</a>
+      <a href="#" data-i18n="downloadApp">Download App</a>
+      <a href="#" data-i18n="vipClub">VIP Club</a>
     </div>
     <div class="utility-lang">
       <div class="lang-select" id="langSelect">
@@ -24,10 +24,11 @@
           <span class="lang-caret">▾</span>
         </button>
         <ul class="lang-menu" id="langMenu">
-          <li><button data-flag="🇬🇧" data-label="EN">🇬🇧 English</button></li>
-          <li><button data-flag="🇻🇳" data-label="VI">🇻🇳 Tiếng Việt</button></li>
-          <li><button data-flag="🇨🇳" data-label="ZH">🇨🇳 中文</button></li>
-          <li><button data-flag="🇲🇾" data-label="MS">🇲🇾 Bahasa Malaysia</button></li>
+          <li><button data-lang="en" data-flag="🇬🇧" data-label="EN">🇬🇧 English</button></li>
+          <li><button data-lang="vi" data-flag="🇻🇳" data-label="VI">🇻🇳 Tiếng Việt</button></li>
+          <li><button data-lang="zh" data-flag="🇨🇳" data-label="ZH">🇨🇳 中文</button></li>
+          <li><button data-lang="ms" data-flag="🇲🇾" data-label="MS">🇲🇾 Bahasa Malaysia</button></li>
+          <li><button data-lang="th" data-flag="🇹🇭" data-label="TH">🇹🇭 ภาษาไทย</button></li>
         </ul>
       </div>
       <span>💰 USD</span>
@@ -48,22 +49,22 @@
     </a>
 
     <nav class="main-nav">
-      <a href="#" class="active">Casino</a>
-      <a href="#">Live Casino</a>
-      <a href="#">Sports</a>
-      <a href="#">Slots</a>
-      <a href="#">Promotions</a>
-      <a href="#">VIP</a>
+      <a href="#" class="active" data-i18n="navCasino">Casino</a>
+      <a href="#" data-i18n="navLiveCasino">Live Casino</a>
+      <a href="#" data-i18n="navSports">Sports</a>
+      <a href="#" data-i18n="navSlots">Slots</a>
+      <a href="#" data-i18n="navPromotions">Promotions</a>
+      <a href="#" data-i18n="navVip">VIP</a>
     </nav>
 
     <div class="header-search">
-      <input type="text" placeholder="Search games...">
+      <input type="text" placeholder="Search games..." data-i18n-placeholder="searchPlaceholder">
       <button aria-label="Search">🔍</button>
     </div>
 
     <div class="header-actions">
-      <button class="btn btn-ghost">Log In</button>
-      <button class="btn btn-primary">Join Now</button>
+      <button class="btn btn-ghost" data-i18n="logIn">Log In</button>
+      <button class="btn btn-primary" data-i18n="joinNow">Join Now</button>
     </div>
   </div>
 </header>
@@ -75,18 +76,18 @@
     <button id="closeDrawer" aria-label="Close menu">✕</button>
   </div>
   <nav class="drawer-nav">
-    <a href="#">🏠 Home</a>
-    <a href="#">🎰 Casino</a>
-    <a href="#">🎥 Live Casino</a>
-    <a href="#">⚽ Sports</a>
-    <a href="#">🃏 Poker</a>
-    <a href="#">🎁 Promotions</a>
-    <a href="#">👑 VIP Club</a>
-    <a href="#">💬 Support</a>
+    <a href="#" data-i18n="drawerHome">🏠 Home</a>
+    <a href="#" data-i18n="drawerCasino">🎰 Casino</a>
+    <a href="#" data-i18n="drawerLiveCasino">🎥 Live Casino</a>
+    <a href="#" data-i18n="drawerSports">⚽ Sports</a>
+    <a href="#" data-i18n="drawerPoker">🃏 Poker</a>
+    <a href="#" data-i18n="drawerPromotions">🎁 Promotions</a>
+    <a href="#" data-i18n="drawerVipClub">👑 VIP Club</a>
+    <a href="#" data-i18n="drawerSupport">💬 Support</a>
   </nav>
   <div class="drawer-actions">
-    <button class="btn btn-ghost btn-block">Log In</button>
-    <button class="btn btn-primary btn-block">Join Now</button>
+    <button class="btn btn-ghost btn-block" data-i18n="logIn">Log In</button>
+    <button class="btn btn-primary btn-block" data-i18n="joinNow">Join Now</button>
   </div>
 </div>
 <div class="drawer-overlay" id="drawerOverlay"></div>
@@ -94,12 +95,12 @@
 <!-- ===== PROMO TICKER ===== -->
 <div class="ticker">
   <div class="ticker-track">
-    <span>🔥 Weekend Reload Bonus — up to 50% extra</span>
-    <span>🎉 New Player Pack — Welcome Bundle available</span>
-    <span>🏆 Leaderboard Race — prize pool live now</span>
-    <span>⚡ Instant Withdrawals — 24/7 processing</span>
-    <span>🔥 Weekend Reload Bonus — up to 50% extra</span>
-    <span>🎉 New Player Pack — Welcome Bundle available</span>
+    <span data-i18n="ticker1">🔥 Weekend Reload Bonus — up to 50% extra</span>
+    <span data-i18n="ticker2">🎉 New Player Pack — Welcome Bundle available</span>
+    <span data-i18n="ticker3">🏆 Leaderboard Race — prize pool live now</span>
+    <span data-i18n="ticker4">⚡ Instant Withdrawals — 24/7 processing</span>
+    <span data-i18n="ticker1">🔥 Weekend Reload Bonus — up to 50% extra</span>
+    <span data-i18n="ticker2">🎉 New Player Pack — Welcome Bundle available</span>
   </div>
 </div>
 
@@ -108,12 +109,12 @@
   <div class="hero-slide">
     <div class="container hero-inner">
       <div class="hero-content">
-        <span class="hero-badge">Limited Time Offer</span>
-        <h1>Welcome Bundle<br><span class="accent">Up To $1,000</span></h1>
-        <p>Plus bonus spins on featured slot titles. New players only — join in under a minute.</p>
+        <span class="hero-badge" data-i18n="heroBadge">Limited Time Offer</span>
+        <h1><span data-i18n="heroTitle1">Welcome Bundle</span><br><span class="accent" data-i18n="heroTitle2">Up To $1,000</span></h1>
+        <p data-i18n="heroDesc">Plus bonus spins on featured slot titles. New players only — join in under a minute.</p>
         <div class="hero-actions">
-          <button class="btn btn-primary btn-lg">Claim Bonus</button>
-          <button class="btn btn-outline btn-lg">Browse Games</button>
+          <button class="btn btn-primary btn-lg" data-i18n="claimBonus">Claim Bonus</button>
+          <button class="btn btn-outline btn-lg" data-i18n="browseGames">Browse Games</button>
         </div>
       </div>
       <div class="hero-art" aria-hidden="true">
@@ -134,10 +135,10 @@
 <!-- ===== QUICK STATS STRIP ===== -->
 <section class="stats-strip">
   <div class="container stats-inner">
-    <div class="stat"><strong>2,400+</strong><span>Games</span></div>
-    <div class="stat"><strong>24/7</strong><span>Live Support</span></div>
-    <div class="stat"><strong>&lt;10min</strong><span>Avg. Payout</span></div>
-    <div class="stat"><strong>100+</strong><span>Providers</span></div>
+    <div class="stat"><strong>2,400+</strong><span data-i18n="statGames">Games</span></div>
+    <div class="stat"><strong>24/7</strong><span data-i18n="statSupport">Live Support</span></div>
+    <div class="stat"><strong>&lt;10min</strong><span data-i18n="statPayout">Avg. Payout</span></div>
+    <div class="stat"><strong>100+</strong><span data-i18n="statProviders">Providers</span></div>
   </div>
 </section>
 
@@ -147,19 +148,19 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="sidebar-block">
-      <h3>Categories</h3>
+      <h3 data-i18n="categories">Categories</h3>
       <ul class="sidebar-list">
-        <li class="active"><a href="#">🎰 Slots</a></li>
-        <li><a href="#">🎥 Live Casino</a></li>
-        <li><a href="#">🃏 Table Games</a></li>
-        <li><a href="#">🎯 Jackpots</a></li>
-        <li><a href="#">🐟 Fishing</a></li>
-        <li><a href="#">⚽ Sportsbook</a></li>
-        <li><a href="#">🆕 New Releases</a></li>
+        <li class="active"><a href="#" data-i18n="catSlots">🎰 Slots</a></li>
+        <li><a href="#" data-i18n="catLive">🎥 Live Casino</a></li>
+        <li><a href="#" data-i18n="catTable">🃏 Table Games</a></li>
+        <li><a href="#" data-i18n="catJackpots">🎯 Jackpots</a></li>
+        <li><a href="#" data-i18n="catFishing">🐟 Fishing</a></li>
+        <li><a href="#" data-i18n="catSportsbook">⚽ Sportsbook</a></li>
+        <li><a href="#" data-i18n="catNew">🆕 New Releases</a></li>
       </ul>
     </div>
     <div class="sidebar-block">
-      <h3>Providers</h3>
+      <h3 data-i18n="providersHeading">Providers</h3>
       <ul class="sidebar-list pill-list">
         <li><a href="#">Starforge</a></li>
         <li><a href="#">NovaPlay</a></li>
@@ -169,9 +170,9 @@
       </ul>
     </div>
     <div class="sidebar-banner">
-      <p>👑 Join the VIP Club</p>
-      <span>Unlock exclusive perks</span>
-      <button class="btn btn-primary btn-block">Learn More</button>
+      <p data-i18n="vipTitle">👑 Join the VIP Club</p>
+      <span data-i18n="vipDesc">Unlock exclusive perks</span>
+      <button class="btn btn-primary btn-block" data-i18n="learnMore">Learn More</button>
     </div>
   </aside>
 
@@ -181,27 +182,27 @@
     <!-- Promo Cards -->
     <section class="section">
       <div class="section-head">
-        <h2>Featured Promotions</h2>
-        <a href="#" class="see-all">See all →</a>
+        <h2 data-i18n="featuredPromotions">Featured Promotions</h2>
+        <a href="#" class="see-all" data-i18n="seeAll">See all →</a>
       </div>
       <div class="promo-grid">
         <div class="promo-card promo-a">
-          <span class="promo-tag">New</span>
-          <h3>First Deposit Match</h3>
-          <p>100% up to $500 + 100 bonus spins</p>
-          <button class="btn btn-primary">Claim</button>
+          <span class="promo-tag" data-i18n="promoTagNew">New</span>
+          <h3 data-i18n="promoTitle1">First Deposit Match</h3>
+          <p data-i18n="promoDesc1">100% up to $500 + 100 bonus spins</p>
+          <button class="btn btn-primary" data-i18n="claim">Claim</button>
         </div>
         <div class="promo-card promo-b">
-          <span class="promo-tag">Weekly</span>
-          <h3>Cashback Friday</h3>
-          <p>Up to 15% cashback on net losses</p>
-          <button class="btn btn-primary">Claim</button>
+          <span class="promo-tag" data-i18n="promoTagWeekly">Weekly</span>
+          <h3 data-i18n="promoTitle2">Cashback Friday</h3>
+          <p data-i18n="promoDesc2">Up to 15% cashback on net losses</p>
+          <button class="btn btn-primary" data-i18n="claim">Claim</button>
         </div>
         <div class="promo-card promo-c">
-          <span class="promo-tag">Hot</span>
-          <h3>Refer a Friend</h3>
-          <p>Earn $25 for every friend you invite</p>
-          <button class="btn btn-primary">Claim</button>
+          <span class="promo-tag" data-i18n="promoTagHot">Hot</span>
+          <h3 data-i18n="promoTitle3">Refer a Friend</h3>
+          <p data-i18n="promoDesc3">Earn $25 for every friend you invite</p>
+          <button class="btn btn-primary" data-i18n="claim">Claim</button>
         </div>
       </div>
     </section>
@@ -209,13 +210,13 @@
     <!-- Category Tabs -->
     <section class="section">
       <div class="section-head">
-        <h2>Explore Games</h2>
+        <h2 data-i18n="exploreGames">Explore Games</h2>
         <div class="tabs" id="gameTabs">
-          <button class="tab active" data-filter="all">All</button>
-          <button class="tab" data-filter="slots">Slots</button>
-          <button class="tab" data-filter="live">Live</button>
-          <button class="tab" data-filter="table">Table</button>
-          <button class="tab" data-filter="jackpot">Jackpot</button>
+          <button class="tab active" data-filter="all" data-i18n="tabAll">All</button>
+          <button class="tab" data-filter="slots" data-i18n="tabSlots">Slots</button>
+          <button class="tab" data-filter="live" data-i18n="tabLive">Live</button>
+          <button class="tab" data-filter="table" data-i18n="tabTable">Table</button>
+          <button class="tab" data-filter="jackpot" data-i18n="tabJackpot">Jackpot</button>
         </div>
       </div>
 
@@ -225,17 +226,17 @@
       </div>
 
       <div class="load-more-wrap">
-        <button class="btn btn-outline" id="loadMoreBtn">Load More Games</button>
+        <button class="btn btn-outline" id="loadMoreBtn" data-i18n="loadMore">Load More Games</button>
       </div>
     </section>
 
     <!-- Jackpot Banner -->
     <section class="jackpot-banner">
       <div class="jackpot-text">
-        <span class="jackpot-label">Progressive Jackpot</span>
+        <span class="jackpot-label" data-i18n="jackpotLabel">Progressive Jackpot</span>
         <span class="jackpot-amount" id="jackpotAmount">$1,284,502.17</span>
       </div>
-      <button class="btn btn-primary btn-lg">Play Now</button>
+      <button class="btn btn-primary btn-lg" data-i18n="playNow">Play Now</button>
     </section>
 
   </main>
@@ -244,11 +245,11 @@
 <!-- ===== TRUST STRIP ===== -->
 <section class="trust-strip">
   <div class="container trust-inner">
-    <div class="trust-item">🔒 SSL Secured</div>
-    <div class="trust-item">✅ Licensed & Regulated</div>
-    <div class="trust-item">⚡ Fast Payouts</div>
-    <div class="trust-item">🎧 24/7 Support</div>
-    <div class="trust-item">🔞 18+ Responsible Play</div>
+    <div class="trust-item" data-i18n="trustSSL">🔒 SSL Secured</div>
+    <div class="trust-item" data-i18n="trustLicensed">✅ Licensed &amp; Regulated</div>
+    <div class="trust-item" data-i18n="trustPayouts">⚡ Fast Payouts</div>
+    <div class="trust-item" data-i18n="trustSupport">🎧 24/7 Support</div>
+    <div class="trust-item" data-i18n="trust18">🔞 18+ Responsible Play</div>
   </div>
 </section>
 
@@ -257,36 +258,36 @@
   <div class="container footer-grid">
     <div class="footer-col footer-brand">
       <span class="logo-text">Lucky<em>Reels</em></span>
-      <p>A demo casino UI built for front-end testing and prototyping purposes only. Not a real gambling service.</p>
+      <p data-i18n="footerTagline">A demo casino UI built for front-end testing and prototyping purposes only. Not a real gambling service.</p>
       <div class="payment-icons">
         <span>💳</span><span>🏦</span><span>₿</span><span>Ⓟ</span>
       </div>
     </div>
     <div class="footer-col">
-      <h4>Casino</h4>
-      <a href="#">Slots</a>
-      <a href="#">Live Casino</a>
-      <a href="#">Table Games</a>
-      <a href="#">Jackpots</a>
+      <h4 data-i18n="footerCasinoHeading">Casino</h4>
+      <a href="#" data-i18n="catSlots2">Slots</a>
+      <a href="#" data-i18n="navLiveCasino">Live Casino</a>
+      <a href="#" data-i18n="catTable2">Table Games</a>
+      <a href="#" data-i18n="catJackpots2">Jackpots</a>
     </div>
     <div class="footer-col">
-      <h4>Company</h4>
-      <a href="#">About Us</a>
-      <a href="#">Promotions</a>
-      <a href="#">VIP Club</a>
-      <a href="#">Affiliates</a>
+      <h4 data-i18n="footerCompanyHeading">Company</h4>
+      <a href="#" data-i18n="aboutUs">About Us</a>
+      <a href="#" data-i18n="navPromotions">Promotions</a>
+      <a href="#" data-i18n="vipClub">VIP Club</a>
+      <a href="#" data-i18n="affiliates">Affiliates</a>
     </div>
     <div class="footer-col">
-      <h4>Support</h4>
-      <a href="#">Help Center</a>
-      <a href="#">Responsible Gaming</a>
-      <a href="#">Terms of Service</a>
-      <a href="#">Privacy Policy</a>
+      <h4 data-i18n="footerSupportHeading">Support</h4>
+      <a href="#" data-i18n="helpCenter">Help Center</a>
+      <a href="#" data-i18n="responsibleGaming">Responsible Gaming</a>
+      <a href="#" data-i18n="termsOfService">Terms of Service</a>
+      <a href="#" data-i18n="privacyPolicy">Privacy Policy</a>
     </div>
   </div>
   <div class="container footer-bottom">
-    <p>⚠️ Demo / placeholder site — for UI development and testing only. No real-money gambling occurs here.</p>
-    <p>© 2026 LuckyReels Demo. All rights reserved.</p>
+    <p data-i18n="footerDisclaimer">⚠️ Demo / placeholder site — for UI development and testing only. No real-money gambling occurs here.</p>
+    <p data-i18n="footerCopyright">© 2026 LuckyReels Demo. All rights reserved.</p>
   </div>
 </footer>
 
