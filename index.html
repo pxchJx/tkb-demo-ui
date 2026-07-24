@@ -145,13 +145,27 @@
   </div>
 </div>
 
+<!-- ===== TOP PROMO BANNER ===== -->
+<div class="promo-banner" id="promoBanner">
+  <div class="promo-banner-inner">
+    <div class="promo-banner-text">
+      <strong data-i18n="promoBannerTitle">Double Your First Deposit</strong>
+      <span data-i18n="promoBannerDesc">Get a 100% bonus up to $100 plus 50 free spins</span>
+    </div>
+    <div class="promo-banner-actions">
+      <button class="btn promo-banner-btn" data-i18n="promoBannerCta">Claim Reward Now</button>
+      <button class="promo-banner-close" id="promoBannerClose" aria-label="Dismiss">✕</button>
+    </div>
+  </div>
+</div>
+
 <!-- ===== TOP UTILITY BAR ===== -->
 <div class="utility-bar">
   <div class="container utility-inner">
     <div class="utility-links">
       <a href="#" data-i18n="support">Support</a>
       <a href="#" data-i18n="downloadApp">Download App</a>
-      <a href="#" data-i18n="vipClub">VIP Club</a>
+      <a href="#" data-i18n="vipClub">👑 VIP Club</a>
     </div>
     <div class="utility-lang">
       <div class="lang-select" id="langSelect">
@@ -184,15 +198,6 @@
       <img src="assets/logo.svg" alt="OGXBET" class="logo-img">
     </a>
 
-    <nav class="main-nav">
-      <a href="#" class="active" data-i18n="navCasino">Casino</a>
-      <a href="#" data-i18n="navLiveCasino">Live Casino</a>
-      <a href="#" data-i18n="navSports">Sports</a>
-      <a href="#" data-i18n="navSlots">Slots</a>
-      <a href="#" data-i18n="navPromotions">Promotions</a>
-      <a href="#" data-i18n="navVip">VIP</a>
-    </nav>
-
     <div class="header-search">
       <input type="text" placeholder="Search games..." data-i18n-placeholder="searchPlaceholder">
       <button aria-label="Search">🔍</button>
@@ -200,7 +205,8 @@
 
     <div class="header-actions" id="headerActions">
       <button class="btn btn-ghost auth-open-btn" data-auth-tab="login" data-i18n="logIn">Log In</button>
-      <button class="btn btn-primary auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Join Now</button>
+      <button class="btn btn-primary auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Register</button>
+      <button class="header-chat-btn" aria-label="Live chat">💬</button>
     </div>
   </div>
 </header>
@@ -213,17 +219,20 @@
   </div>
   <nav class="drawer-nav">
     <a href="#" data-i18n="drawerHome">🏠 Home</a>
-    <a href="#" data-i18n="drawerCasino">🎰 Casino</a>
+    <a href="#" data-i18n="navHotGames">🔥 Hot Games</a>
+    <a href="#" data-i18n="drawerCasino">🎰 Slots</a>
     <a href="#" data-i18n="drawerLiveCasino">🎥 Live Casino</a>
     <a href="#" data-i18n="drawerSports">⚽ Sports</a>
-    <a href="#" data-i18n="drawerPoker">🃏 Poker</a>
+    <a href="#" data-i18n="navTableGames">🃏 Table Games</a>
+    <a href="#" data-i18n="navFishing">🎣 Fishing</a>
+    <a href="#" data-i18n="navLottery">🎱 Lottery</a>
     <a href="#" data-i18n="drawerPromotions">🎁 Promotions</a>
     <a href="#" data-i18n="drawerVipClub">👑 VIP Club</a>
     <a href="#" data-i18n="drawerSupport">💬 Support</a>
   </nav>
   <div class="drawer-actions" id="drawerActions">
     <button class="btn btn-ghost btn-block auth-open-btn" data-auth-tab="login" data-i18n="logIn">Log In</button>
-    <button class="btn btn-primary btn-block auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Join Now</button>
+    <button class="btn btn-primary btn-block auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Register</button>
   </div>
 </div>
 <div class="drawer-overlay" id="drawerOverlay"></div>
@@ -240,80 +249,109 @@
   </div>
 </div>
 
-<!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="hero-slide">
-    <div class="container hero-inner">
-      <div class="hero-content">
-        <span class="hero-badge" data-i18n="heroBadge">Limited Time Offer</span>
-        <h1><span data-i18n="heroTitle1">Welcome Bundle</span><br><span class="accent" data-i18n="heroTitle2">Up To $1,000</span></h1>
-        <p data-i18n="heroDesc">Plus bonus spins on featured slot titles. New players only — join in under a minute.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary btn-lg" data-i18n="claimBonus">Claim Bonus</button>
-          <button class="btn btn-outline btn-lg" data-i18n="browseGames">Browse Games</button>
-        </div>
-      </div>
-      <div class="hero-art" aria-hidden="true">
-        <div class="art-coin c1">🪙</div>
-        <div class="art-coin c2">💎</div>
-        <div class="art-coin c3">🍒</div>
-        <div class="art-glow"></div>
-      </div>
-    </div>
-  </div>
-  <div class="hero-dots">
-    <span class="dot active"></span>
-    <span class="dot"></span>
-    <span class="dot"></span>
-  </div>
-</section>
+<!-- ===== APP SHELL: SIDE NAV + MAIN ===== -->
+<div class="app-shell">
 
-<!-- ===== QUICK STATS STRIP ===== -->
-<section class="stats-strip">
-  <div class="container stats-inner">
-    <div class="stat"><strong>2,400+</strong><span data-i18n="statGames">Games</span></div>
-    <div class="stat"><strong>24/7</strong><span data-i18n="statSupport">Live Support</span></div>
-    <div class="stat"><strong>&lt;10min</strong><span data-i18n="statPayout">Avg. Payout</span></div>
-    <div class="stat"><strong>100+</strong><span data-i18n="statProviders">Providers</span></div>
-  </div>
-</section>
+  <!-- PERSISTENT SIDE NAV -->
+  <aside class="side-nav" id="sideNav">
+    <button class="side-nav-toggle" id="sideNavToggle">
+      <span class="toggle-icon">⟨</span>
+      <span class="toggle-label" data-i18n="hideMenu">Hide Menu</span>
+    </button>
 
-<!-- ===== MAIN LAYOUT: SIDEBAR + CONTENT ===== -->
-<div class="container main-layout">
+    <nav class="side-nav-group">
+      <a href="#" class="side-nav-item" data-label="navHome"><span class="side-nav-icon">🏠</span><span class="side-nav-text" data-i18n="navHome">Home</span></a>
+      <a href="#" class="side-nav-item active" data-label="navHotGames"><span class="side-nav-icon">🔥</span><span class="side-nav-text" data-i18n="navHotGames">Hot Games</span><span class="side-nav-badge" data-i18n="badgeNew">New</span></a>
+      <a href="#" class="side-nav-item" data-label="navSlotsFull"><span class="side-nav-icon">🎰</span><span class="side-nav-text" data-i18n="navSlotsFull">Slots</span></a>
+      <a href="#" class="side-nav-item" data-label="navLiveCasinoFull"><span class="side-nav-icon">🎥</span><span class="side-nav-text" data-i18n="navLiveCasinoFull">Live Casino</span></a>
+      <a href="#" class="side-nav-item" data-label="navSportsFull"><span class="side-nav-icon">⚽</span><span class="side-nav-text" data-i18n="navSportsFull">Sports</span></a>
+      <a href="#" class="side-nav-item" data-label="navTableGames"><span class="side-nav-icon">🃏</span><span class="side-nav-text" data-i18n="navTableGames">Table Games</span></a>
+      <a href="#" class="side-nav-item" data-label="navFishing"><span class="side-nav-icon">🎣</span><span class="side-nav-text" data-i18n="navFishing">Fishing</span></a>
+      <a href="#" class="side-nav-item" data-label="navLottery"><span class="side-nav-icon">🎱</span><span class="side-nav-text" data-i18n="navLottery">Lottery</span></a>
+    </nav>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="sidebar-block">
-      <h3 data-i18n="categories">Categories</h3>
-      <ul class="sidebar-list">
-        <li class="active"><a href="#" data-i18n="catSlots">🎰 Slots</a></li>
-        <li><a href="#" data-i18n="catLive">🎥 Live Casino</a></li>
-        <li><a href="#" data-i18n="catTable">🃏 Table Games</a></li>
-        <li><a href="#" data-i18n="catJackpots">🎯 Jackpots</a></li>
-        <li><a href="#" data-i18n="catFishing">🐟 Fishing</a></li>
-        <li><a href="#" data-i18n="catSportsbook">⚽ Sportsbook</a></li>
-        <li><a href="#" data-i18n="catNew">🆕 New Releases</a></li>
-      </ul>
-    </div>
-    <div class="sidebar-block">
-      <h3 data-i18n="providersHeading">Providers</h3>
-      <ul class="sidebar-list pill-list">
-        <li><a href="#">Starforge</a></li>
-        <li><a href="#">NovaPlay</a></li>
-        <li><a href="#">RedTiger Labs</a></li>
-        <li><a href="#">PixelWin</a></li>
-        <li><a href="#">GoldenRock</a></li>
-      </ul>
-    </div>
-    <div class="sidebar-banner">
+    <nav class="side-nav-group">
+      <a href="#" class="side-nav-item" data-label="navPromotionsFull"><span class="side-nav-icon">🎁</span><span class="side-nav-text" data-i18n="navPromotionsFull">Promotions</span><span class="side-nav-count">32</span></a>
+      <a href="#" class="side-nav-item" data-label="navTournaments"><span class="side-nav-icon">🏆</span><span class="side-nav-text" data-i18n="navTournaments">Tournaments</span><span class="side-nav-badge" data-i18n="badgeNew">New</span></a>
+      <a href="#" class="side-nav-item" data-label="navVipClubFull"><span class="side-nav-icon">👑</span><span class="side-nav-text" data-i18n="navVipClubFull">VIP Club</span></a>
+      <a href="#" class="side-nav-item" data-label="navVipRewards"><span class="side-nav-icon">🎖️</span><span class="side-nav-text" data-i18n="navVipRewards">VIP Rewards</span></a>
+      <a href="#" class="side-nav-item" data-label="navAiPredictions"><span class="side-nav-icon">🔮</span><span class="side-nav-text" data-i18n="navAiPredictions">AI Predictions</span></a>
+    </nav>
+
+    <nav class="side-nav-group">
+      <a href="#" class="side-nav-item" data-label="navProviders"><span class="side-nav-icon">⭐</span><span class="side-nav-text" data-i18n="navProviders">Providers</span></a>
+      <a href="#" class="side-nav-item" data-label="navReferral"><span class="side-nav-icon">🔗</span><span class="side-nav-text" data-i18n="navReferral">Referral</span></a>
+      <a href="#" class="side-nav-item" data-label="navProvablyFair"><span class="side-nav-icon">⚖️</span><span class="side-nav-text" data-i18n="navProvablyFair">Provably Fair</span></a>
+      <a href="#" class="side-nav-item" data-label="navResponsible"><span class="side-nav-icon">🛡️</span><span class="side-nav-text" data-i18n="navResponsible">Responsible Gambling</span></a>
+    </nav>
+
+    <nav class="side-nav-group">
+      <a href="#" class="side-nav-item" data-label="navContactUs"><span class="side-nav-icon">📞</span><span class="side-nav-text" data-i18n="navContactUs">Contact Us</span></a>
+      <a href="#" class="side-nav-item" data-label="navFeedback"><span class="side-nav-icon">💬</span><span class="side-nav-text" data-i18n="navFeedback">Feedback</span></a>
+      <a href="#" class="side-nav-item" data-label="navLiveSupport"><span class="side-nav-icon">🎧</span><span class="side-nav-text" data-i18n="navLiveSupport">Live Support</span></a>
+    </nav>
+
+    <div class="side-nav-vip">
       <p data-i18n="vipTitle">👑 Join the VIP Club</p>
       <span data-i18n="vipDesc">Unlock exclusive perks</span>
       <button class="btn btn-primary btn-block" data-i18n="learnMore">Learn More</button>
     </div>
   </aside>
 
-  <!-- CONTENT -->
-  <main class="content">
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-slide">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <span class="hero-badge" data-i18n="heroBadge">Limited Time Offer</span>
+            <h1><span data-i18n="heroTitle1">Welcome Bundle</span><br><span class="accent" data-i18n="heroTitle2">Up To $1,000</span></h1>
+            <p data-i18n="heroDesc">Plus bonus spins on featured slot titles. New players only — join in under a minute.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary btn-lg" data-i18n="claimBonus">Claim Bonus</button>
+              <button class="btn btn-outline btn-lg" data-i18n="browseGames">Browse Games</button>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="art-coin c1">🪙</div>
+            <div class="art-coin c2">💎</div>
+            <div class="art-coin c3">🍒</div>
+            <div class="art-glow"></div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-dots">
+        <span class="dot active"></span>
+        <span class="dot"></span>
+        <span class="dot"></span>
+      </div>
+    </section>
+
+    <!-- QUICK STATS STRIP -->
+    <section class="stats-strip">
+      <div class="stats-inner">
+        <div class="stat"><span class="stat-icon">🎮</span><div><strong>2,400+</strong><span data-i18n="statGames">Games</span></div></div>
+        <div class="stat"><span class="stat-icon">🎧</span><div><strong>24/7</strong><span data-i18n="statSupport">Live Support</span></div></div>
+        <div class="stat"><span class="stat-icon">⚡</span><div><strong>&lt;10min</strong><span data-i18n="statPayout">Avg. Payout</span></div></div>
+        <div class="stat"><span class="stat-icon">♾️</span><div><strong data-i18n="statNoLimitValue">No Limit</strong><span data-i18n="statWithdrawLimit">Withdraw Limit</span></div></div>
+      </div>
+    </section>
+
+    <!-- RECENT BIG WINS -->
+    <section class="carousel-section">
+      <div class="carousel-head">
+        <h2><span class="live-dot"></span><span data-i18n="recentBigWins">Recent Big Wins</span></h2>
+        <div class="carousel-controls">
+          <button class="carousel-filter active" data-i18n="tabAll">All</button>
+          <button class="carousel-filter" data-i18n="originalsLabel">Originals</button>
+          <button class="carousel-filter" data-i18n="tabSlots">Slots</button>
+          <button class="carousel-filter" data-i18n="navLiveCasinoFull">Live Casino</button>
+        </div>
+      </div>
+      <div class="carousel-track wins-track" id="winsTrack"></div>
+    </section>
 
     <!-- Promo Cards -->
     <section class="section">
@@ -356,13 +394,111 @@
         </div>
       </div>
 
-      <!-- Game Grid -->
-      <div class="game-grid" id="gameGrid">
-        <!-- injected by JS -->
-      </div>
+      <div class="game-grid" id="gameGrid"></div>
 
       <div class="load-more-wrap">
         <button class="btn btn-outline" id="loadMoreBtn" data-i18n="loadMore">Load More Games</button>
+      </div>
+    </section>
+
+    <!-- ORIGINALS CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel-head">
+        <h2 data-i18n="originalsHeading">OGXBET Originals</h2>
+        <div class="carousel-controls">
+          <button class="carousel-filter active" data-i18n="tabAll">All</button>
+          <button class="carousel-arrow" data-target="originalsTrack" data-dir="-1" aria-label="Scroll left">‹</button>
+          <button class="carousel-arrow" data-target="originalsTrack" data-dir="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+      <div class="carousel-track" id="originalsTrack"></div>
+    </section>
+
+    <!-- HOT GAMES CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel-head">
+        <h2 data-i18n="navHotGames">Hot Games</h2>
+        <div class="carousel-controls">
+          <button class="carousel-filter active" data-i18n="tabAll">All</button>
+          <button class="carousel-arrow" data-target="hotTrack" data-dir="-1" aria-label="Scroll left">‹</button>
+          <button class="carousel-arrow" data-target="hotTrack" data-dir="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+      <div class="carousel-track" id="hotTrack"></div>
+    </section>
+
+    <!-- EXCLUSIVE CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel-head">
+        <h2 data-i18n="exclusiveHeading">OGXBET Exclusive</h2>
+        <div class="carousel-controls">
+          <button class="carousel-filter active" data-i18n="tabAll">All</button>
+          <button class="carousel-arrow" data-target="exclusiveTrack" data-dir="-1" aria-label="Scroll left">‹</button>
+          <button class="carousel-arrow" data-target="exclusiveTrack" data-dir="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+      <div class="carousel-track" id="exclusiveTrack"></div>
+    </section>
+
+    <!-- LIVE CASINO CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel-head">
+        <h2 data-i18n="navLiveCasinoFull">Live Casino</h2>
+        <div class="carousel-controls">
+          <button class="carousel-filter active" data-i18n="tabAll">All</button>
+          <button class="carousel-arrow" data-target="liveTrack" data-dir="-1" aria-label="Scroll left">‹</button>
+          <button class="carousel-arrow" data-target="liveTrack" data-dir="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+      <div class="carousel-track" id="liveTrack"></div>
+    </section>
+
+    <!-- PAY YOUR WAY -->
+    <section class="pay-strip">
+      <h3 data-i18n="payYourWay">Pay Your Way</h3>
+      <div class="pay-methods">
+        <span>💳 Card</span>
+        <span>🏦 Bank Transfer</span>
+        <span>📱 E-Wallet</span>
+        <span>Ⓟ PayPal</span>
+      </div>
+      <div class="pay-crypto">
+        <span>₿</span><span>Ξ</span><span>Ł</span><span>Ð</span><span>₮</span><span>◈</span>
+      </div>
+    </section>
+
+    <!-- BINGO CAROUSEL -->
+    <section class="carousel-section">
+      <div class="carousel-head">
+        <h2><span class="carousel-icon">🎱</span> <span data-i18n="allBingoGames">All Bingo Games</span></h2>
+        <div class="carousel-controls">
+          <button class="carousel-filter active" data-i18n="tabAll">All</button>
+          <button class="carousel-arrow" data-target="bingoTrack" data-dir="-1" aria-label="Scroll left">‹</button>
+          <button class="carousel-arrow" data-target="bingoTrack" data-dir="1" aria-label="Scroll right">›</button>
+        </div>
+      </div>
+      <div class="carousel-track" id="bingoTrack"></div>
+    </section>
+
+    <!-- LATEST ROUND & RACE -->
+    <section class="section">
+      <div class="section-head">
+        <h2><span class="carousel-icon">🌟</span> <span data-i18n="latestRoundRace">Latest Round &amp; Race</span></h2>
+        <div class="bet-tabs" id="betTabs">
+          <button class="bet-tab active" data-bet-tab="latest" data-i18n="latestBet">Latest Bet</button>
+          <button class="bet-tab" data-bet-tab="high" data-i18n="highRoller">High Roller</button>
+          <button class="bet-tab" data-bet-tab="wager" data-i18n="wagerContest">Wager Contest</button>
+        </div>
+      </div>
+      <div class="bet-table" id="betTable">
+        <div class="bet-table-head">
+          <span data-i18n="betGameCol">Game</span>
+          <span data-i18n="betPlayerCol">Player</span>
+          <span data-i18n="betAmountCol">Bet Amount</span>
+          <span data-i18n="betMultiplierCol">Multiplier</span>
+          <span data-i18n="betProfitCol">Profit</span>
+        </div>
+        <div class="bet-table-body" id="betTableBody"></div>
       </div>
     </section>
 

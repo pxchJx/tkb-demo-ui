@@ -16,6 +16,42 @@ hamburgerBtn.addEventListener('click', openDrawer);
 closeDrawer.addEventListener('click', closeDrawerFn);
 drawerOverlay.addEventListener('click', closeDrawerFn);
 
+// ============ TOP PROMO BANNER ============
+const promoBanner = document.getElementById('promoBanner');
+const promoBannerClose = document.getElementById('promoBannerClose');
+const PROMO_BANNER_DISMISS_KEY = 'promoBannerDismissed';
+
+if (promoBanner && localStorage.getItem(PROMO_BANNER_DISMISS_KEY)) {
+  promoBanner.classList.add('hidden');
+}
+promoBannerClose.addEventListener('click', () => {
+  promoBanner.classList.add('hidden');
+  localStorage.setItem(PROMO_BANNER_DISMISS_KEY, '1');
+});
+
+// ============ PERSISTENT SIDE NAV ============
+const sideNav = document.getElementById('sideNav');
+const sideNavToggle = document.getElementById('sideNavToggle');
+sideNavToggle.addEventListener('click', () => {
+  sideNav.classList.toggle('collapsed');
+});
+
+document.querySelectorAll('.side-nav-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('.side-nav-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+  });
+});
+
+// ============ CAROUSEL ARROW SCROLL ============
+document.querySelectorAll('.carousel-arrow').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const track = document.getElementById(btn.dataset.target);
+    if (track) track.scrollBy({ left: 220 * Number(btn.dataset.dir), behavior: 'smooth' });
+  });
+});
+
 // ============ INSTALL APP / SMART BANNER ============
 const installBanner = document.getElementById('installBanner');
 const installCloseBtn = document.getElementById('installCloseBtn');
@@ -303,6 +339,20 @@ document.querySelector('[data-settings-panel="security"]').addEventListener('sub
 // ============ TRANSLATIONS ============
 const TRANSLATIONS = {
   en: {
+    promoBannerTitle: 'Double Your First Deposit', promoBannerDesc: 'Get a 100% bonus up to $100 plus 50 free spins', promoBannerCta: 'Claim Reward Now',
+    hideMenu: 'Hide Menu',
+    navHome: 'Home', navHotGames: 'Hot Games', navSlotsFull: 'Slots', navLiveCasinoFull: 'Live Casino', navSportsFull: 'Sports',
+    navTableGames: 'Table Games', navFishing: 'Fishing', navLottery: 'Lottery',
+    navPromotionsFull: 'Promotions', navTournaments: 'Tournaments', navVipClubFull: 'VIP Club', navVipRewards: 'VIP Rewards', navAiPredictions: 'AI Predictions',
+    navProviders: 'Providers', navReferral: 'Referral', navProvablyFair: 'Provably Fair', navResponsible: 'Responsible Gambling',
+    navContactUs: 'Contact Us', navFeedback: 'Feedback', navLiveSupport: 'Live Support',
+    badgeNew: 'New',
+    recentBigWins: 'Recent Big Wins', originalsLabel: 'Originals',
+    originalsHeading: 'OGXBET Originals', exclusiveHeading: 'OGXBET Exclusive',
+    statNoLimitValue: 'No Limit', statWithdrawLimit: 'Withdraw Limit',
+    payYourWay: 'Pay Your Way', allBingoGames: 'All Bingo Games',
+    latestRoundRace: 'Latest Round & Race', latestBet: 'Latest Bet', highRoller: 'High Roller', wagerContest: 'Wager Contest',
+    betGameCol: 'Game', betPlayerCol: 'Player', betAmountCol: 'Bet Amount', betMultiplierCol: 'Multiplier', betProfitCol: 'Profit',
     settingsMenuItem: '⚙️ Account Settings', settingsHeading: 'Account Settings',
     settingsTabProfile: 'Profile', settingsTabPreferences: 'Preferences', settingsTabSecurity: 'Security',
     settingsSaveProfile: 'Save Changes', settingsSavePrefs: 'Save Preferences', settingsUpdatePassword: 'Update Password',
@@ -341,6 +391,20 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. All rights reserved.'
   },
   vi: {
+    promoBannerTitle: 'Nhân Đôi Lần Nạp Đầu Tiên', promoBannerDesc: 'Nhận thưởng 100% lên đến $100 cộng 50 vòng quay miễn phí', promoBannerCta: 'Nhận Thưởng Ngay',
+    hideMenu: 'Ẩn Menu',
+    navHome: 'Trang Chủ', navHotGames: 'Game Hot', navSlotsFull: 'Slots', navLiveCasinoFull: 'Casino Trực Tiếp', navSportsFull: 'Thể Thao',
+    navTableGames: 'Trò Chơi Bàn', navFishing: 'Bắn Cá', navLottery: 'Xổ Số',
+    navPromotionsFull: 'Khuyến Mãi', navTournaments: 'Giải Đấu', navVipClubFull: 'Câu Lạc Bộ VIP', navVipRewards: 'Ưu Đãi VIP', navAiPredictions: 'Dự Đoán AI',
+    navProviders: 'Nhà Cung Cấp', navReferral: 'Giới Thiệu', navProvablyFair: 'Công Bằng Minh Bạch', navResponsible: 'Cờ Bạc Có Trách Nhiệm',
+    navContactUs: 'Liên Hệ', navFeedback: 'Phản Hồi', navLiveSupport: 'Hỗ Trợ Trực Tuyến',
+    badgeNew: 'Mới',
+    recentBigWins: 'Chiến Thắng Lớn Gần Đây', originalsLabel: 'Originals',
+    originalsHeading: 'OGXBET Originals', exclusiveHeading: 'OGXBET Độc Quyền',
+    statNoLimitValue: 'Không Giới Hạn', statWithdrawLimit: 'Hạn Mức Rút Tiền',
+    payYourWay: 'Thanh Toán Theo Cách Của Bạn', allBingoGames: 'Tất Cả Game Bingo',
+    latestRoundRace: 'Vòng Đấu & Cuộc Đua Mới Nhất', latestBet: 'Cược Gần Nhất', highRoller: 'Cược Lớn', wagerContest: 'Đua Top Cược',
+    betGameCol: 'Trò Chơi', betPlayerCol: 'Người Chơi', betAmountCol: 'Số Tiền Cược', betMultiplierCol: 'Hệ Số', betProfitCol: 'Lợi Nhuận',
     settingsMenuItem: '⚙️ Cài Đặt Tài Khoản', settingsHeading: 'Cài Đặt Tài Khoản',
     settingsTabProfile: 'Hồ Sơ', settingsTabPreferences: 'Tùy Chọn', settingsTabSecurity: 'Bảo Mật',
     settingsSaveProfile: 'Lưu Thay Đổi', settingsSavePrefs: 'Lưu Tùy Chọn', settingsUpdatePassword: 'Cập Nhật Mật Khẩu',
@@ -379,6 +443,20 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Đã đăng ký bản quyền.'
   },
   zh: {
+    promoBannerTitle: '首存双倍优惠', promoBannerDesc: '100%最高$100奖金外加50次免费旋转', promoBannerCta: '立即领取',
+    hideMenu: '隐藏菜单',
+    navHome: '首页', navHotGames: '热门游戏', navSlotsFull: '老虎机', navLiveCasinoFull: '真人娱乐场', navSportsFull: '体育',
+    navTableGames: '桌上游戏', navFishing: '捕鱼', navLottery: '彩票',
+    navPromotionsFull: '优惠活动', navTournaments: '锦标赛', navVipClubFull: 'VIP俱乐部', navVipRewards: 'VIP奖励', navAiPredictions: 'AI预测',
+    navProviders: '游戏供应商', navReferral: '推荐好友', navProvablyFair: '公开验证公平', navResponsible: '理性博彩',
+    navContactUs: '联系我们', navFeedback: '意见反馈', navLiveSupport: '在线客服',
+    badgeNew: '新',
+    recentBigWins: '近期大奖', originalsLabel: '原创游戏',
+    originalsHeading: 'OGXBET原创游戏', exclusiveHeading: 'OGXBET专属游戏',
+    statNoLimitValue: '无限制', statWithdrawLimit: '提款限额',
+    payYourWay: '多种支付方式', allBingoGames: '所有宾果游戏',
+    latestRoundRace: '最新对局与竞赛', latestBet: '最新投注', highRoller: '高额玩家', wagerContest: '投注竞赛',
+    betGameCol: '游戏', betPlayerCol: '玩家', betAmountCol: '投注金额', betMultiplierCol: '倍数', betProfitCol: '盈利',
     settingsMenuItem: '⚙️ 账户设置', settingsHeading: '账户设置',
     settingsTabProfile: '个人资料', settingsTabPreferences: '偏好设置', settingsTabSecurity: '安全',
     settingsSaveProfile: '保存更改', settingsSavePrefs: '保存偏好', settingsUpdatePassword: '更新密码',
@@ -417,6 +495,20 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. 保留所有权利。'
   },
   ms: {
+    promoBannerTitle: 'Gandakan Deposit Pertama Anda', promoBannerDesc: 'Dapatkan bonus 100% sehingga $100 tambah 50 putaran percuma', promoBannerCta: 'Tuntut Ganjaran Sekarang',
+    hideMenu: 'Sembunyi Menu',
+    navHome: 'Laman Utama', navHotGames: 'Permainan Popular', navSlotsFull: 'Slot', navLiveCasinoFull: 'Kasino Langsung', navSportsFull: 'Sukan',
+    navTableGames: 'Permainan Meja', navFishing: 'Tembak Ikan', navLottery: 'Loteri',
+    navPromotionsFull: 'Promosi', navTournaments: 'Kejohanan', navVipClubFull: 'Kelab VIP', navVipRewards: 'Ganjaran VIP', navAiPredictions: 'Ramalan AI',
+    navProviders: 'Pembekal', navReferral: 'Rujukan', navProvablyFair: 'Adil Boleh Disahkan', navResponsible: 'Perjudian Bertanggungjawab',
+    navContactUs: 'Hubungi Kami', navFeedback: 'Maklum Balas', navLiveSupport: 'Sokongan Langsung',
+    badgeNew: 'Baharu',
+    recentBigWins: 'Kemenangan Besar Terkini', originalsLabel: 'Originals',
+    originalsHeading: 'OGXBET Originals', exclusiveHeading: 'OGXBET Eksklusif',
+    statNoLimitValue: 'Tiada Had', statWithdrawLimit: 'Had Pengeluaran',
+    payYourWay: 'Bayar Ikut Cara Anda', allBingoGames: 'Semua Permainan Bingo',
+    latestRoundRace: 'Pusingan & Pertandingan Terkini', latestBet: 'Pertaruhan Terkini', highRoller: 'Pemain Besar', wagerContest: 'Pertandingan Taruhan',
+    betGameCol: 'Permainan', betPlayerCol: 'Pemain', betAmountCol: 'Jumlah Taruhan', betMultiplierCol: 'Gandaan', betProfitCol: 'Keuntungan',
     settingsMenuItem: '⚙️ Tetapan Akaun', settingsHeading: 'Tetapan Akaun',
     settingsTabProfile: 'Profil', settingsTabPreferences: 'Keutamaan', settingsTabSecurity: 'Keselamatan',
     settingsSaveProfile: 'Simpan Perubahan', settingsSavePrefs: 'Simpan Keutamaan', settingsUpdatePassword: 'Kemas Kini Kata Laluan',
@@ -455,6 +547,20 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Hak cipta terpelihara.'
   },
   th: {
+    promoBannerTitle: 'รับโบนัสฝากครั้งแรกสองเท่า', promoBannerDesc: 'รับโบนัส 100% สูงสุด $100 พร้อมฟรีสปิน 50 ครั้ง', promoBannerCta: 'รับรางวัลตอนนี้',
+    hideMenu: 'ซ่อนเมนู',
+    navHome: 'หน้าแรก', navHotGames: 'เกมยอดนิยม', navSlotsFull: 'สล็อต', navLiveCasinoFull: 'คาสิโนสด', navSportsFull: 'กีฬา',
+    navTableGames: 'เกมโต๊ะ', navFishing: 'เกมยิงปลา', navLottery: 'หวย',
+    navPromotionsFull: 'โปรโมชั่น', navTournaments: 'ทัวร์นาเมนต์', navVipClubFull: 'คลับ VIP', navVipRewards: 'สิทธิพิเศษ VIP', navAiPredictions: 'AI ทำนายผล',
+    navProviders: 'ผู้ให้บริการเกม', navReferral: 'แนะนำเพื่อน', navProvablyFair: 'ตรวจสอบความเป็นธรรมได้', navResponsible: 'การพนันอย่างมีความรับผิดชอบ',
+    navContactUs: 'ติดต่อเรา', navFeedback: 'ข้อเสนอแนะ', navLiveSupport: 'ฝ่ายสนับสนุนสด',
+    badgeNew: 'ใหม่',
+    recentBigWins: 'รางวัลใหญ่ล่าสุด', originalsLabel: 'เกมต้นฉบับ',
+    originalsHeading: 'OGXBET Originals', exclusiveHeading: 'OGXBET สุดพิเศษ',
+    statNoLimitValue: 'ไม่จำกัด', statWithdrawLimit: 'วงเงินถอน',
+    payYourWay: 'ชำระเงินในแบบของคุณ', allBingoGames: 'เกมบิงโกทั้งหมด',
+    latestRoundRace: 'รอบล่าสุดและการแข่งขัน', latestBet: 'เดิมพันล่าสุด', highRoller: 'สายเดิมพันสูง', wagerContest: 'การแข่งขันเดิมพัน',
+    betGameCol: 'เกม', betPlayerCol: 'ผู้เล่น', betAmountCol: 'จำนวนเดิมพัน', betMultiplierCol: 'ตัวคูณ', betProfitCol: 'กำไร',
     settingsMenuItem: '⚙️ ตั้งค่าบัญชี', settingsHeading: 'ตั้งค่าบัญชี',
     settingsTabProfile: 'โปรไฟล์', settingsTabPreferences: 'การตั้งค่า', settingsTabSecurity: 'ความปลอดภัย',
     settingsSaveProfile: 'บันทึกการเปลี่ยนแปลง', settingsSavePrefs: 'บันทึกการตั้งค่า', settingsUpdatePassword: 'อัปเดตรหัสผ่าน',
@@ -643,6 +749,119 @@ loadMoreBtn.addEventListener('click', () => {
 });
 
 renderGames();
+
+// ============ CAROUSEL ROWS (Originals / Hot / Exclusive / Live / Bingo) ============
+const LIVE_ICONS = ['🎥', '🃏', '🎲', '👑', '💎', '♠️', '🎡'];
+const WIN_AVATARS = ['🦁', '🐯', '🦊', '🐺', '🐸', '🐵', '🐼', '🦉', '🐲', '🦄', '🐧', '🦅'];
+const USERNAME_PARTS = ['Lucky', 'Rush', 'Prime', 'Vibe', 'Storm', 'Zen', 'Nova', 'Ace', 'Kai', 'Neo'];
+
+function randomName() {
+  return `${NAME_PARTS_A[Math.floor(Math.random() * NAME_PARTS_A.length)]} ${NAME_PARTS_B[Math.floor(Math.random() * NAME_PARTS_B.length)]}`;
+}
+function randomUsername() {
+  const part = USERNAME_PARTS[Math.floor(Math.random() * USERNAME_PARTS.length)];
+  return `${part}${Math.floor(Math.random() * 900 + 100)}`;
+}
+function maskUsername(name) {
+  if (name.length <= 3) return name[0] + '***';
+  return name.slice(0, 3) + '***' + name.slice(-1);
+}
+
+function renderCarousel(trackId, count, iconPool) {
+  const track = document.getElementById(trackId);
+  if (!track) return;
+  const icons = iconPool || GAME_ICONS;
+  const cards = [];
+  for (let i = 0; i < count; i++) {
+    const players = Math.floor(Math.random() * 300) + 10;
+    const badgeRoll = Math.random();
+    const badge = badgeRoll < 0.12 ? 'hot' : badgeRoll < 0.24 ? 'new' : null;
+    cards.push(`
+      <div class="game-card">
+        <div class="game-thumb">
+          ${badge ? `<span class="game-badge badge-${badge}">${badgeLabel(badge)}</span>` : ''}
+          <span>${icons[Math.floor(Math.random() * icons.length)]}</span>
+          <div class="play-overlay"><span class="play-btn">▶</span></div>
+        </div>
+        <div class="game-info">
+          <h4>${randomName()}</h4>
+          <span>👤 ${players}</span>
+        </div>
+      </div>
+    `);
+  }
+  track.innerHTML = cards.join('');
+}
+
+function renderWins() {
+  const track = document.getElementById('winsTrack');
+  if (!track) return;
+  const currency = (getDemoPrefs && getDemoPrefs().currency) || 'USD';
+  const cards = [];
+  for (let i = 0; i < 16; i++) {
+    const amount = (Math.random() * 900 + 20).toFixed(2);
+    cards.push(`
+      <div class="win-card">
+        <div class="win-card-avatar">${WIN_AVATARS[Math.floor(Math.random() * WIN_AVATARS.length)]}</div>
+        <div class="win-card-body">
+          <div class="win-card-game">${randomName()}</div>
+          <div class="win-card-user">${maskUsername(randomUsername())}</div>
+          <div class="win-card-amount">+${currency} ${amount}</div>
+        </div>
+      </div>
+    `);
+  }
+  track.innerHTML = cards.join('');
+}
+
+function renderCarousels() {
+  renderWins();
+  renderCarousel('originalsTrack', 10, LIVE_ICONS);
+  renderCarousel('hotTrack', 10);
+  renderCarousel('exclusiveTrack', 10);
+  renderCarousel('liveTrack', 10, LIVE_ICONS);
+  renderCarousel('bingoTrack', 10, ['🎱', '🔔', '🃏', '🎯', '🎲']);
+}
+renderCarousels();
+
+// ============ LATEST ROUND & RACE (BET TABLE) ============
+const betTableBody = document.getElementById('betTableBody');
+const betTabs = document.querySelectorAll('.bet-tab');
+let currentBetTab = 'latest';
+
+function renderBetTable() {
+  const currency = (getDemoPrefs && getDemoPrefs().currency) || 'USD';
+  const rowCount = currentBetTab === 'high' ? 8 : 12;
+  const rows = [];
+  for (let i = 0; i < rowCount; i++) {
+    const bet = currentBetTab === 'high'
+      ? (Math.random() * 900 + 50)
+      : (Math.random() * 5 + 0.05);
+    const multiplier = Math.random() < 0.55 ? 0 : (Math.random() * 12).toFixed(2);
+    const profit = multiplier > 0 ? bet * (multiplier - 1) : -bet;
+    const positive = profit >= 0;
+    rows.push(`
+      <div class="bet-row">
+        <span class="bet-game">${LIVE_ICONS[Math.floor(Math.random() * LIVE_ICONS.length)]} ${randomName()}</span>
+        <span class="bet-player">${randomUsername()}</span>
+        <span class="bet-amount">${currency} ${bet.toFixed(2)}</span>
+        <span class="bet-multiplier">${Number(multiplier).toFixed(2)}x</span>
+        <span class="bet-profit ${positive ? 'positive' : 'negative'}">${positive ? '+' : ''}${currency} ${profit.toFixed(2)}</span>
+      </div>
+    `);
+  }
+  betTableBody.innerHTML = rows.join('');
+}
+
+betTabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    betTabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentBetTab = tab.dataset.betTab;
+    renderBetTable();
+  });
+});
+renderBetTable();
 
 // ============ JACKPOT TICKER ============
 const jackpotEl = document.getElementById('jackpotAmount');
