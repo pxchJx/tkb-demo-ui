@@ -1308,6 +1308,12 @@ img { max-width: 100%; display: block; }
 .win-card-game { font-size: 0.74rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .win-card-user { font-size: 0.68rem; color: var(--text-2); margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .win-card-amount { font-size: 0.8rem; font-weight: 800; color: var(--green); }
+.win-card-new { animation: win-card-enter 0.5s ease-out; }
+@keyframes win-card-enter {
+  0% { opacity: 0; transform: scale(0.9) translateY(-6px); box-shadow: 0 0 0 2px var(--green); }
+  60% { opacity: 1; transform: scale(1) translateY(0); box-shadow: 0 0 0 2px var(--green); }
+  100% { box-shadow: 0 0 0 0 transparent; }
+}
 
 /* Reuse .game-card sizing for carousel tracks */
 .carousel-track .game-card { flex-shrink: 0; width: 168px; }

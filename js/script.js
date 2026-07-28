@@ -808,26 +808,40 @@ function renderCarousel(trackId, count, iconPool) {
   track.innerHTML = cards.join('');
 }
 
+const WIN_CARD_CAP = 16;
+
+function generateWinCardHtml(isNew) {
+  const currency = (getDemoPrefs && getDemoPrefs().currency) || 'USD';
+  const amount = (Math.random() * 900 + 20).toFixed(2);
+  return `
+    <div class="win-card${isNew ? ' win-card-new' : ''}">
+      <div class="win-card-avatar">${WIN_AVATARS[Math.floor(Math.random() * WIN_AVATARS.length)]}</div>
+      <div class="win-card-body">
+        <div class="win-card-game">${randomName()}</div>
+        <div class="win-card-user">${maskUsername(randomUsername())}</div>
+        <div class="win-card-amount">+${currency} ${amount}</div>
+      </div>
+    </div>
+  `;
+}
+
 function renderWins() {
   const track = document.getElementById('winsTrack');
   if (!track) return;
-  const currency = (getDemoPrefs && getDemoPrefs().currency) || 'USD';
   const cards = [];
-  for (let i = 0; i < 16; i++) {
-    const amount = (Math.random() * 900 + 20).toFixed(2);
-    cards.push(`
-      <div class="win-card">
-        <div class="win-card-avatar">${WIN_AVATARS[Math.floor(Math.random() * WIN_AVATARS.length)]}</div>
-        <div class="win-card-body">
-          <div class="win-card-game">${randomName()}</div>
-          <div class="win-card-user">${maskUsername(randomUsername())}</div>
-          <div class="win-card-amount">+${currency} ${amount}</div>
-        </div>
-      </div>
-    `);
-  }
+  for (let i = 0; i < WIN_CARD_CAP; i++) cards.push(generateWinCardHtml(false));
   track.innerHTML = cards.join('');
 }
+
+// Live feed: periodically insert a fresh win at the start, capped so the strip doesn't grow forever.
+function pushLiveWinCard() {
+  const track = document.getElementById('winsTrack');
+  if (!track) return;
+  track.insertAdjacentHTML('afterbegin', generateWinCardHtml(true));
+  const cards = track.querySelectorAll('.win-card');
+  for (let i = WIN_CARD_CAP; i < cards.length; i++) cards[i].remove();
+}
+setInterval(pushLiveWinCard, 3400);
 
 function renderCarousels() {
   renderWins();
