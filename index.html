@@ -203,6 +203,12 @@
       <button aria-label="Search">🔍</button>
     </div>
 
+    <button class="cmdk-trigger" id="cmdkTrigger" aria-haspopup="dialog" aria-controls="cmdkDialog">
+      <span class="cmdk-trigger-icon">⌘</span>
+      <span data-i18n="cmdkTriggerLabel">Quick actions</span>
+      <kbd class="cmdk-trigger-kbd"><span class="cmdk-kbd-mod">⌘</span>K</kbd>
+    </button>
+
     <div class="header-actions" id="headerActions">
       <button class="btn btn-ghost auth-open-btn" data-auth-tab="login" data-i18n="logIn">Log In</button>
       <button class="btn btn-primary auth-open-btn" data-auth-tab="register" data-i18n="joinNow">Register</button>
@@ -210,6 +216,37 @@
     </div>
   </div>
 </header>
+
+<!-- ===== COMMAND PALETTE (⌘K / Ctrl+K) ===== -->
+<div class="cmdk-overlay" id="cmdkOverlay">
+  <div class="cmdk-dialog" role="dialog" aria-modal="true" aria-label="Command palette" id="cmdkDialog">
+    <div class="cmdk-input-wrap">
+      <span class="cmdk-input-icon">🔍</span>
+      <input
+        type="text"
+        id="cmdkInput"
+        class="cmdk-input"
+        role="combobox"
+        aria-expanded="true"
+        aria-controls="cmdkList"
+        aria-autocomplete="list"
+        aria-activedescendant=""
+        autocomplete="off"
+        spellcheck="false"
+        data-i18n-placeholder="cmdkPlaceholder"
+        placeholder="Type a command or search..."
+      >
+      <kbd class="cmdk-esc-hint">Esc</kbd>
+    </div>
+    <div class="cmdk-list" id="cmdkList" role="listbox" aria-label="Suggestions"></div>
+    <p class="cmdk-empty" id="cmdkEmpty" data-i18n="cmdkEmpty" hidden>No results found.</p>
+    <div class="cmdk-footer">
+      <span><kbd>↑</kbd><kbd>↓</kbd> <span data-i18n="cmdkNavigate">Navigate</span></span>
+      <span><kbd>↵</kbd> <span data-i18n="cmdkSelect">Select</span></span>
+      <span><kbd>Esc</kbd> <span data-i18n="cmdkClose">Close</span></span>
+    </div>
+  </div>
+</div>
 
 <!-- ===== MOBILE DRAWER ===== -->
 <div class="mobile-drawer" id="mobileDrawer">
@@ -483,7 +520,7 @@
     <!-- LATEST ROUND & RACE -->
     <section class="section">
       <div class="section-head">
-        <h2><span class="carousel-icon">🌟</span> <span data-i18n="latestRoundRace">Latest Round &amp; Race</span></h2>
+        <h2><span class="live-dot"></span><span data-i18n="latestRoundRace">Latest Round &amp; Race</span></h2>
         <div class="bet-tabs" id="betTabs">
           <button class="bet-tab active" data-bet-tab="latest" data-i18n="latestBet">Latest Bet</button>
           <button class="bet-tab" data-bet-tab="high" data-i18n="highRoller">High Roller</button>

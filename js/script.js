@@ -339,6 +339,9 @@ document.querySelector('[data-settings-panel="security"]').addEventListener('sub
 // ============ TRANSLATIONS ============
 const TRANSLATIONS = {
   en: {
+    cmdkTriggerLabel: 'Quick actions', cmdkPlaceholder: 'Type a command or search...', cmdkEmpty: 'No results found.',
+    cmdkNavigate: 'Navigate', cmdkSelect: 'Select', cmdkClose: 'Close',
+    cmdkGroupNavigation: 'Navigation', cmdkGroupAccount: 'Account', cmdkGroupPreferences: 'Language', cmdkGroupQuickActions: 'Quick Actions',
     promoBannerTitle: 'Double Your First Deposit', promoBannerDesc: 'Get a 100% bonus up to $100 plus 50 free spins', promoBannerCta: 'Claim Reward Now',
     hideMenu: 'Hide Menu',
     navHome: 'Home', navHotGames: 'Hot Games', navSlotsFull: 'Slots', navLiveCasinoFull: 'Live Casino', navSportsFull: 'Sports',
@@ -391,6 +394,9 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. All rights reserved.'
   },
   vi: {
+    cmdkTriggerLabel: 'Thao tác nhanh', cmdkPlaceholder: 'Nhập lệnh hoặc tìm kiếm...', cmdkEmpty: 'Không tìm thấy kết quả.',
+    cmdkNavigate: 'Di chuyển', cmdkSelect: 'Chọn', cmdkClose: 'Đóng',
+    cmdkGroupNavigation: 'Điều Hướng', cmdkGroupAccount: 'Tài Khoản', cmdkGroupPreferences: 'Ngôn Ngữ', cmdkGroupQuickActions: 'Thao Tác Nhanh',
     promoBannerTitle: 'Nhân Đôi Lần Nạp Đầu Tiên', promoBannerDesc: 'Nhận thưởng 100% lên đến $100 cộng 50 vòng quay miễn phí', promoBannerCta: 'Nhận Thưởng Ngay',
     hideMenu: 'Ẩn Menu',
     navHome: 'Trang Chủ', navHotGames: 'Game Hot', navSlotsFull: 'Slots', navLiveCasinoFull: 'Casino Trực Tiếp', navSportsFull: 'Thể Thao',
@@ -443,6 +449,9 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Đã đăng ký bản quyền.'
   },
   zh: {
+    cmdkTriggerLabel: '快捷操作', cmdkPlaceholder: '输入命令或搜索...', cmdkEmpty: '未找到相关结果。',
+    cmdkNavigate: '切换', cmdkSelect: '选择', cmdkClose: '关闭',
+    cmdkGroupNavigation: '导航', cmdkGroupAccount: '账户', cmdkGroupPreferences: '语言', cmdkGroupQuickActions: '快捷操作',
     promoBannerTitle: '首存双倍优惠', promoBannerDesc: '100%最高$100奖金外加50次免费旋转', promoBannerCta: '立即领取',
     hideMenu: '隐藏菜单',
     navHome: '首页', navHotGames: '热门游戏', navSlotsFull: '老虎机', navLiveCasinoFull: '真人娱乐场', navSportsFull: '体育',
@@ -495,6 +504,9 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. 保留所有权利。'
   },
   ms: {
+    cmdkTriggerLabel: 'Tindakan pantas', cmdkPlaceholder: 'Taip arahan atau cari...', cmdkEmpty: 'Tiada hasil ditemui.',
+    cmdkNavigate: 'Navigasi', cmdkSelect: 'Pilih', cmdkClose: 'Tutup',
+    cmdkGroupNavigation: 'Navigasi', cmdkGroupAccount: 'Akaun', cmdkGroupPreferences: 'Bahasa', cmdkGroupQuickActions: 'Tindakan Pantas',
     promoBannerTitle: 'Gandakan Deposit Pertama Anda', promoBannerDesc: 'Dapatkan bonus 100% sehingga $100 tambah 50 putaran percuma', promoBannerCta: 'Tuntut Ganjaran Sekarang',
     hideMenu: 'Sembunyi Menu',
     navHome: 'Laman Utama', navHotGames: 'Permainan Popular', navSlotsFull: 'Slot', navLiveCasinoFull: 'Kasino Langsung', navSportsFull: 'Sukan',
@@ -547,6 +559,9 @@ const TRANSLATIONS = {
     footerCopyright: '© 2026 OGXBET Demo. Hak cipta terpelihara.'
   },
   th: {
+    cmdkTriggerLabel: 'คำสั่งด่วน', cmdkPlaceholder: 'พิมพ์คำสั่งหรือค้นหา...', cmdkEmpty: 'ไม่พบผลลัพธ์',
+    cmdkNavigate: 'เลื่อน', cmdkSelect: 'เลือก', cmdkClose: 'ปิด',
+    cmdkGroupNavigation: 'การนำทาง', cmdkGroupAccount: 'บัญชี', cmdkGroupPreferences: 'ภาษา', cmdkGroupQuickActions: 'คำสั่งด่วน',
     promoBannerTitle: 'รับโบนัสฝากครั้งแรกสองเท่า', promoBannerDesc: 'รับโบนัส 100% สูงสุด $100 พร้อมฟรีสปิน 50 ครั้ง', promoBannerCta: 'รับรางวัลตอนนี้',
     hideMenu: 'ซ่อนเมนู',
     navHome: 'หน้าแรก', navHotGames: 'เกมยอดนิยม', navSlotsFull: 'สล็อต', navLiveCasinoFull: 'คาสิโนสด', navSportsFull: 'กีฬา',
@@ -829,29 +844,42 @@ const betTableBody = document.getElementById('betTableBody');
 const betTabs = document.querySelectorAll('.bet-tab');
 let currentBetTab = 'latest';
 
-function renderBetTable() {
+const BET_ROW_CAP = 12;
+
+function generateBetRowHtml(isNew) {
   const currency = (getDemoPrefs && getDemoPrefs().currency) || 'USD';
-  const rowCount = currentBetTab === 'high' ? 8 : 12;
+  const bet = currentBetTab === 'high'
+    ? (Math.random() * 900 + 50)
+    : (Math.random() * 5 + 0.05);
+  const multiplier = Math.random() < 0.55 ? 0 : (Math.random() * 12).toFixed(2);
+  const profit = multiplier > 0 ? bet * (multiplier - 1) : -bet;
+  const positive = profit >= 0;
+  return `
+    <div class="bet-row${isNew ? ' bet-row-new' : ''}">
+      <span class="bet-game">${LIVE_ICONS[Math.floor(Math.random() * LIVE_ICONS.length)]} ${randomName()}</span>
+      <span class="bet-player">${randomUsername()}</span>
+      <span class="bet-amount">${currency} ${bet.toFixed(2)}</span>
+      <span class="bet-multiplier">${Number(multiplier).toFixed(2)}x</span>
+      <span class="bet-profit ${positive ? 'positive' : 'negative'}">${positive ? '+' : ''}${currency} ${profit.toFixed(2)}</span>
+    </div>
+  `;
+}
+
+function renderBetTable() {
+  const rowCount = currentBetTab === 'high' ? 8 : BET_ROW_CAP;
   const rows = [];
-  for (let i = 0; i < rowCount; i++) {
-    const bet = currentBetTab === 'high'
-      ? (Math.random() * 900 + 50)
-      : (Math.random() * 5 + 0.05);
-    const multiplier = Math.random() < 0.55 ? 0 : (Math.random() * 12).toFixed(2);
-    const profit = multiplier > 0 ? bet * (multiplier - 1) : -bet;
-    const positive = profit >= 0;
-    rows.push(`
-      <div class="bet-row">
-        <span class="bet-game">${LIVE_ICONS[Math.floor(Math.random() * LIVE_ICONS.length)]} ${randomName()}</span>
-        <span class="bet-player">${randomUsername()}</span>
-        <span class="bet-amount">${currency} ${bet.toFixed(2)}</span>
-        <span class="bet-multiplier">${Number(multiplier).toFixed(2)}x</span>
-        <span class="bet-profit ${positive ? 'positive' : 'negative'}">${positive ? '+' : ''}${currency} ${profit.toFixed(2)}</span>
-      </div>
-    `);
-  }
+  for (let i = 0; i < rowCount; i++) rows.push(generateBetRowHtml(false));
   betTableBody.innerHTML = rows.join('');
 }
+
+// Live feed: periodically insert one fresh row at the top, capped so the list doesn't grow forever.
+function pushLiveBetRow() {
+  betTableBody.insertAdjacentHTML('afterbegin', generateBetRowHtml(true));
+  const rows = betTableBody.querySelectorAll('.bet-row');
+  const cap = currentBetTab === 'high' ? 8 : BET_ROW_CAP;
+  for (let i = cap; i < rows.length; i++) rows[i].remove();
+}
+setInterval(pushLiveBetRow, 2600);
 
 betTabs.forEach(tab => {
   tab.addEventListener('click', () => {
@@ -870,3 +898,194 @@ setInterval(() => {
   jackpotValue += Math.random() * 8;
   jackpotEl.textContent = '$' + jackpotValue.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 }, 1200);
+
+// ============ COMMAND PALETTE (⌘K / Ctrl+K) ============
+const cmdkTrigger = document.getElementById('cmdkTrigger');
+const cmdkOverlay = document.getElementById('cmdkOverlay');
+const cmdkDialog = document.getElementById('cmdkDialog');
+const cmdkInput = document.getElementById('cmdkInput');
+const cmdkList = document.getElementById('cmdkList');
+const cmdkEmpty = document.getElementById('cmdkEmpty');
+
+let cmdkInvoker = null;
+let cmdkVisibleItems = [];
+let cmdkActiveIndex = -1;
+
+function t(key) {
+  return (TRANSLATIONS[currentLang] || TRANSLATIONS.en)[key] || key;
+}
+
+// Actions are re-read on every open so labels/state stay current (auth state, language, translations).
+function getCommandGroups() {
+  const isLoggedIn = !!getDemoProfile();
+
+  const navigation = {
+    label: t('cmdkGroupNavigation'),
+    items: [
+      { icon: '🏠', label: t('navHome'), action: () => scrollToSelector('.hero') },
+      { icon: '🔥', label: t('navHotGames'), action: () => scrollToSelector('#hotTrack') },
+      { icon: '🎰', label: t('navSlotsFull'), action: () => filterGamesAndScroll('slots') },
+      { icon: '🎥', label: t('navLiveCasinoFull'), action: () => scrollToSelector('#liveTrack') },
+      { icon: '🎁', label: t('navPromotionsFull'), action: () => scrollToSelector('.promo-grid') },
+      { icon: '🌟', label: t('latestRoundRace'), action: () => scrollToSelector('#betTable') },
+      { icon: '💰', label: t('jackpotLabel'), action: () => scrollToSelector('.jackpot-banner') }
+    ]
+  };
+
+  const account = {
+    label: t('cmdkGroupAccount'),
+    items: isLoggedIn
+      ? [
+          { icon: '⚙️', label: t('settingsMenuItem').replace(/^[^\w]*/, ''), action: () => openSettingsModal() },
+          { icon: '🚪', label: t('authLogout'), action: () => logoutDemoUser() }
+        ]
+      : [
+          { icon: '🔑', label: t('authTabLogin'), action: () => openAuthModal('login') },
+          { icon: '📝', label: t('authTabRegister'), action: () => openAuthModal('register') }
+        ]
+  };
+
+  const preferences = {
+    label: t('cmdkGroupPreferences'),
+    items: [
+      { icon: '🇬🇧', label: 'English', shortcut: 'EN', action: () => applyTranslations('en') },
+      { icon: '🇻🇳', label: 'Tiếng Việt', shortcut: 'VI', action: () => applyTranslations('vi') },
+      { icon: '🇨🇳', label: '中文', shortcut: 'ZH', action: () => applyTranslations('zh') },
+      { icon: '🇲🇾', label: 'Bahasa Malaysia', shortcut: 'MS', action: () => applyTranslations('ms') },
+      { icon: '🇹🇭', label: 'ภาษาไทย', shortcut: 'TH', action: () => applyTranslations('th') }
+    ]
+  };
+
+  const quick = {
+    label: t('cmdkGroupQuickActions'),
+    items: [
+      { icon: '🎉', label: t('claimBonus'), action: () => scrollToSelector('.hero') },
+      { icon: '📲', label: t('installTitle'), action: () => { installBanner.classList.add('show'); installBanner.classList.remove('hidden'); } }
+    ]
+  };
+
+  return [navigation, account, preferences, quick];
+}
+
+function scrollToSelector(selector) {
+  const el = document.querySelector(selector);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+function filterGamesAndScroll(filterKey) {
+  const tabBtn = document.querySelector(`.tab[data-filter="${filterKey}"]`);
+  if (tabBtn) tabBtn.click();
+  scrollToSelector('#gameGrid');
+}
+
+function cmdkItemId(groupIndex, itemIndex) {
+  return `cmdk-item-${groupIndex}-${itemIndex}`;
+}
+
+function renderCmdkList(query) {
+  const q = query.trim().toLowerCase();
+  const groups = getCommandGroups();
+  cmdkVisibleItems = [];
+  let html = '';
+
+  groups.forEach((group, gi) => {
+    const matches = group.items
+      .map((item, ii) => ({ item, ii }))
+      .filter(({ item }) => !q || item.label.toLowerCase().includes(q));
+    if (!matches.length) return;
+
+    html += `<div class="cmdk-group-label">${group.label}</div>`;
+    matches.forEach(({ item, ii }) => {
+      const id = cmdkItemId(gi, ii);
+      cmdkVisibleItems.push({ id, action: item.action });
+      html += `
+        <div class="cmdk-item" id="${id}" role="option" aria-selected="false" data-group="${gi}" data-item="${ii}">
+          <span class="cmdk-item-icon">${item.icon}</span>
+          <span class="cmdk-item-label">${item.label}</span>
+          ${item.shortcut ? `<span class="cmdk-item-kbd">${item.shortcut}</span>` : ''}
+        </div>`;
+    });
+  });
+
+  cmdkList.innerHTML = html;
+  cmdkEmpty.hidden = cmdkVisibleItems.length > 0;
+  cmdkActiveIndex = cmdkVisibleItems.length ? 0 : -1;
+  updateCmdkActiveDescendant();
+
+  cmdkList.querySelectorAll('.cmdk-item').forEach((el, idx) => {
+    el.addEventListener('mouseenter', () => {
+      cmdkActiveIndex = idx;
+      updateCmdkActiveDescendant();
+    });
+    el.addEventListener('click', () => {
+      cmdkActiveIndex = idx;
+      runActiveCmdkItem();
+    });
+  });
+}
+
+function updateCmdkActiveDescendant() {
+  cmdkList.querySelectorAll('.cmdk-item').forEach((el, idx) => {
+    const selected = idx === cmdkActiveIndex;
+    el.setAttribute('aria-selected', String(selected));
+    if (selected) {
+      cmdkInput.setAttribute('aria-activedescendant', el.id);
+      el.scrollIntoView({ block: 'nearest' });
+    }
+  });
+  if (cmdkActiveIndex === -1) cmdkInput.setAttribute('aria-activedescendant', '');
+}
+
+function moveCmdkSelection(delta) {
+  if (!cmdkVisibleItems.length) return;
+  cmdkActiveIndex = (cmdkActiveIndex + delta + cmdkVisibleItems.length) % cmdkVisibleItems.length;
+  updateCmdkActiveDescendant();
+}
+
+function runActiveCmdkItem() {
+  const active = cmdkVisibleItems[cmdkActiveIndex];
+  if (!active) return;
+  closeCmdk();
+  active.action();
+}
+
+function openCmdk(invoker) {
+  cmdkInvoker = invoker || document.activeElement;
+  cmdkOverlay.classList.add('open');
+  cmdkInput.value = '';
+  renderCmdkList('');
+  requestAnimationFrame(() => cmdkInput.focus());
+}
+
+function closeCmdk() {
+  if (!cmdkOverlay.classList.contains('open')) return;
+  cmdkOverlay.classList.remove('open');
+  if (cmdkInvoker && typeof cmdkInvoker.focus === 'function' && document.contains(cmdkInvoker)) {
+    cmdkInvoker.focus();
+  }
+  cmdkInvoker = null;
+}
+
+cmdkTrigger.addEventListener('click', () => openCmdk(cmdkTrigger));
+cmdkOverlay.addEventListener('click', (e) => { if (e.target === cmdkOverlay) closeCmdk(); });
+cmdkInput.addEventListener('input', () => renderCmdkList(cmdkInput.value));
+
+cmdkInput.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowDown') { e.preventDefault(); moveCmdkSelection(1); }
+  else if (e.key === 'ArrowUp') { e.preventDefault(); moveCmdkSelection(-1); }
+  else if (e.key === 'Enter') { e.preventDefault(); runActiveCmdkItem(); }
+  else if (e.key === 'Escape') { e.preventDefault(); closeCmdk(); }
+  else if (e.key === 'Tab') { e.preventDefault(); }
+});
+
+document.addEventListener('keydown', (e) => {
+  const isMod = e.metaKey || e.ctrlKey;
+  if (isMod && e.key.toLowerCase() === 'k') {
+    e.preventDefault();
+    if (cmdkOverlay.classList.contains('open')) closeCmdk();
+    else openCmdk(document.activeElement);
+    return;
+  }
+  if (e.key === 'Escape' && cmdkOverlay.classList.contains('open')) {
+    closeCmdk();
+  }
+});
